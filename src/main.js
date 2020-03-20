@@ -7,7 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import App from './App'
 import router from './router'
-import store from './store/index'
+// import store from './store/index'
+import store from './store/store'
 import './styles/index.css'
 
 Vue.config.productionTip = false;

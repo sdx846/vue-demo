@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <el-row style="height: 100%">
       <el-col :span="24" class="header">
-        <el-col :span="10" class="logo">后台管理系统</el-col>
+        <!-- <el-col :span="10" class="logo">后台管理系统</el-col> -->
         <el-col :span="10"></el-col>
         <el-col :span="4" class="userinfo">
           <!-- <el-dropdown trigger="hover">
@@ -15,7 +15,7 @@
               <el-dropdown-item divided @click.native="changePass">修改密码</el-dropdown-item>
               <el-dropdown-item divided @click.native="loginOut">退出登录</el-dropdown-item>
             </el-dropdown-menu>
-          </el-dropdown> -->
+          </el-dropdown>-->
         </el-col>
       </el-col>
 
@@ -29,7 +29,7 @@
               @select="activeChange"
               class="el-menu-vertical-demo"
             >
-              <el-menu-item index="home">
+              <el-menu-item index="home" @click="$router.push({path: '/home/other'})">
                 <i class="el-icon-location"></i>
                 <span slot="title">首页</span>
               </el-menu-item>
@@ -45,23 +45,20 @@
                     index="home/systemManage/users"
                     @click.ctrl.native="newPage('users')"
                     @click="$router.push({path:'/home/systemManage/users'})"
-                  >用户管理</el-menu-item>
+                  >管理1</el-menu-item>
                   <el-menu-item
                     v-if="ps.includes('JSGL')"
                     index="home/systemManage/role"
                     @click.ctrl.native="newPage('role')"
                     @click="$router.push({path:'/home/systemManage/role'})"
-                  >角色管理</el-menu-item>
+                  >管理2</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
               <el-menu-item index="home/other" v-if="ps.includes('QT')">
                 <template slot="title">
-                  <div
-                    @click.ctrl="newPage('other')"
-                    @click="$router.push({path: '/home/other'})"
-                  >
+                  <div @click.ctrl="newPage('other')" @click="$router.push({path: '/home/other'})">
                     <i class="el-icon-menu"></i>
-                    <span>日志管理</span>
+                    <span>其他</span>
                   </div>
                 </template>
               </el-menu-item>
@@ -107,18 +104,35 @@
 // Vue.use(Submenu);
 // Vue.use(MenuItem);
 // Vue.use(MenuItemGroup);
-
+import Store from "../../store/store";
 export default {
   // name: 'home',
   data() {
     return {
-      username:'admin',
+      username: "admin",
       msg: "this is home page",
       active: sessionStorage.getItem("active") || "home",
-      ps: ["XTGL", "YHGL", "JSGL",'QT'], //登录后从后台获取的权限列表
+      ps: [], //登录后从后台获取的权限列表
       // roleKey: Store.get("roleKey"),
       breadList: []
     };
+  },
+  created() {
+    if (Store.get("ps")) {
+      this.ps = Store.get("ps");
+    }
+    if (localStorage.getItem("user_token")) {
+      this.getBread();
+    } else {
+      this.$router.replace({
+        path: "/login"
+      });
+    }
+  },
+  watch: {
+    $route() {
+      this.getBread();
+    }
   },
   methods: {
     newPage(path) {
