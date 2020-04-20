@@ -2,3 +2,13 @@ body{
     font-size:16px;
     color:#f00;
 }
+.flex{
+    display:flex;
+}
+.btn{
+    width:100px;
+    height:40px;
+    line-height: 40px;
+    border:1px solid #ddd;
+    text-align: center;
+}

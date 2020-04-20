@@ -9,6 +9,12 @@
       @updateList="updateList"
       :id="id"
     ></create>
+    <!-- vuex应用 -->
+    <!-- <div class='flex'>
+      <div class="btn" @click="onSum">+</div>
+      <div>{{$store.state.count}}</div>
+      <div class="btn" @click="onReduce">-</div>
+    </div> -->
   </div>
 </template>
 
@@ -28,13 +34,21 @@ export default {
     create: Create
   },
   created() {
-    if (localStorage.getItem("user_token")) {
-      // this.getList();
-    } else {
+    if (!localStorage.getItem("user_token")) {
       this.$router.replace({
         path: "/login"
       });
-    }
+      return;
+    } 
+    // console.log(this.$store)
+    // console.log(this.$parent);
+    // console.log(this.$root);
+    // console.log(this.$children);
+    // console.log(this.$refs);
+    // console.log(this.$el);
+    // console.log(this.$els);
+    // console.log(this.$data);
+    // console.log(this.$options);
   },
   methods: {
     onAdd() {
@@ -42,10 +56,16 @@ export default {
       this.showModal = true;
       this.id = "";
     },
-    updateList(opt) {}
+    updateList(opt) {},
+    // onSum(){
+    //   this.$store.dispatch('addFun');
+    // },
+    // onReduce(){
+    //   this.$store.dispatch('reduceFun');
+    // },
   }
 };
 </script>
 
-<style scoped>
+<style>
 </style>

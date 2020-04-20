@@ -118,16 +118,24 @@ export default {
     };
   },
   created() {
-    if (Store.get("ps")) {
-      this.ps = Store.get("ps");
-    }
-    if (localStorage.getItem("user_token")) {
-      this.getBread();
-    } else {
+    // if (Store.get("ps")) {
+    //   this.ps = Store.get("ps");
+    // }
+    if (!localStorage.getItem("user_token")) {
       this.$router.replace({
         path: "/login"
       });
+      return;
     }
+    this.getBread();
+    // console.log(this.$parent);
+    // console.log(this.$root);
+    // console.log(this.$children);
+    // console.log(this.$refs);
+    // console.log(this.$el);
+    // console.log(this.$els);
+    // console.log(this.$data);
+    // console.log(this.$options);
   },
   watch: {
     $route() {

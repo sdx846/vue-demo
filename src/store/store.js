@@ -1,39 +1,38 @@
 /**
- * Created by xx on 2020-3-20
+ * Created by Wonder on 2018/5/14
  * 操作本地localStorage
  */
 export default{
-    name:"Store",
-    set:function(key, value) {
+  name:"Store",
+  set:function(key, value) {
+    try {
+      value = JSON.stringify(value);
+    } catch (e) {
+      throw e;
+    }
+    window.localStorage.setItem( key, value);
+  },
+  get:function(key) {
+    if (!key) {
+      throw new Error('没有找到key。');
+    }
+    if (typeof key === 'object') {
+      throw new Error('key不能是一个对象。');
+    }
+    let value = window.localStorage.getItem(key);
+    if (value !== null) {
       try {
-        value = JSON.stringify(value);
+        value = JSON.parse(value);
       } catch (e) {
         throw e;
       }
-      window.localStorage.setItem( key, value);
-    },
-    get:function(key) {
-      if (!key) {
-        throw new Error('没有找到key。');
-      }
-      if (typeof key === 'object') {
-        throw new Error('key不能是一个对象。');
-      }
-      let value = window.localStorage.getItem(key);
-      if (value !== null) {
-        try {
-          value = JSON.parse(value);
-        } catch (e) {
-          throw e;
-        }
-      }
-      return value;
-    },
-    getIdentity:function(){
-      return this.get('Identity')
-    },
-    remove:function(key) {
-      window.localStorage.removeItem(key);
     }
+    return value;
+  },
+  getIdentity:function(){
+    return this.get('Identity')
+  },
+  remove:function(key) {
+    window.localStorage.removeItem(key);
+  }
 }
-  
