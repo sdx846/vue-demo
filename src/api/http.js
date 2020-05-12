@@ -14,7 +14,10 @@ export let NODE_ENV;
 export let domain;
 
 NODE_ENV = 'easypark';
-domain='http://192.168.0.129:8088/';
+
+// domain = "http://"+ window.location.host+"/"
+// domain='http://debug.easy-parking.cn/';
+domain="https://easy-parking.cn/"
 
 baseURL = domain + NODE_ENV + '/';
 axios.defaults.baseURL = baseURL;
