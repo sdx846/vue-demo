@@ -13,6 +13,11 @@
         <div>
          {{modalTitle}}
         </div>
+        <div>------开始插槽----------</div>
+        <slot name="todo" :user="user" :test="test">
+          默认{{ user.lastName }}
+        </slot> 
+        <div>------结束插槽----------</div>
       </el-form>
     </el-dialog>
   </div>
@@ -25,6 +30,15 @@
 export default {
   data() {
     return {
+      user:{
+        lastName:"名",
+        firstName:"姓"
+      },
+      test:[
+        {id:1,name:'lili1'},
+        {id:2,name:'lili2'},
+        {id:3,name:'lili3'},
+      ],
       form: {
       },
       formCopy: {},

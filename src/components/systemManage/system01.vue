@@ -10,7 +10,12 @@
       <div class="btn" @click="onEdit">编辑</div>
       <div class="btn" @click="onChangeObj">更改obj的str</div>
     </div>
-    <create :modal-title="modalTitle" :show.sync="showModal"></create>  
+    <create :modal-title="modalTitle" :show.sync="showModal">
+      <template v-slot:todo="slotProps" >
+        {{slotProps.user.firstName}}
+        <span v-for="item in slotProps.test">{{item.name}}</span>  
+      </template> 
+    </create>  
   </div>
 </template>
 
