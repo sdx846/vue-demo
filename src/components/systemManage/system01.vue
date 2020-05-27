@@ -1,8 +1,15 @@
 <template>
   <div class="system01">
     <h1>{{ msg }}</h1>
-    <div class="btn" @click="onAdd">新增</div>
-    <div class="btn" @click="onEdit">编辑</div>
+    <div>
+      <span>{{str}}</span>
+      <p>{{obj.str}}</p>
+    </div>
+    <div class="flex">
+      <div class="btn" @click="onAdd">新增</div>
+      <div class="btn" @click="onEdit">编辑</div>
+      <div class="btn" @click="onChangeObj">更改obj的str</div>
+    </div>
     <create :modal-title="modalTitle" :show.sync="showModal"></create>  
   </div>
 </template>
@@ -16,6 +23,8 @@ export default {
       msg: "this is system01 page",
       modalTitle:'',
       showModal:false,
+      str:'str',
+      obj:{str:'obj str'},
     };
   },
   components: {
@@ -31,6 +40,10 @@ export default {
       let that=this;
       that.modalTitle="编辑";
       that.showModal=true;
+    },
+    onChangeObj(){
+      let that=this;
+      that.obj.str="这是改变后的str";
     },
   }
 };

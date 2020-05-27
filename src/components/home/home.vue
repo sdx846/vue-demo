@@ -41,13 +41,13 @@
                 </template>
                 <el-menu-item-group>
                   <el-menu-item
-                    v-if="ps.includes('YHGL')"
+                    v-if="ps.includes('GL1')"
                     index="home/systemManage/users"
                     @click.ctrl.native="newPage('users')"
                     @click="$router.push({path:'/home/systemManage/users'})"
                   >管理1</el-menu-item>
                   <el-menu-item
-                    v-if="ps.includes('JSGL')"
+                    v-if="ps.includes('GL2')"
                     index="home/systemManage/role"
                     @click.ctrl.native="newPage('role')"
                     @click="$router.push({path:'/home/systemManage/role'})"
@@ -112,7 +112,7 @@ export default {
       username: "admin",
       msg: "this is home page",
       active: sessionStorage.getItem("active") || "home",
-      ps: [], //登录后从后台获取的权限列表
+      ps: ['XTGL','GL1','GL2','QT'], //登录后从后台获取的权限列表
       // roleKey: Store.get("roleKey"),
       breadList: []
     };
