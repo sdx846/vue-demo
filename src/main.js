@@ -57,3 +57,18 @@ new Vue({
   components: {App},
   template: '<App/>'
 });
+
+// var res = Vue.compile('<div><span>{{ msg }}</span></div>')
+// new Vue({
+//   el: '#app',
+//   data: {
+//     msg: 'hello'
+//   },
+//   ss:'sss',
+//   created() {
+//     console.log(this.$options.ss);//获取自定义的属性
+//   },
+//   render: res.render,
+//   staticRenderFns: res.staticRenderFns
+// })
+
