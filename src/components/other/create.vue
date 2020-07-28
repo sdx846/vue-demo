@@ -1,5 +1,6 @@
 <template>
   <div class="modal-dialog">
+    <!-- :visible.sync="show" :visible="show" -->
     <el-dialog
       :title="modalTitle"
       :visible.sync="show"

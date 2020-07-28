@@ -9,12 +9,13 @@
       @updateList="updateList"
       :id="id"
     ></create>
+    <router-view></router-view>
     <!-- vuex应用 -->
     <!-- <div class='flex'>
       <div class="btn" @click="onSum">+</div>
       <div>{{$store.state.count}}</div>
       <div class="btn" @click="onReduce">-</div>
-    </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -39,7 +40,7 @@ export default {
         path: "/login"
       });
       return;
-    } 
+    }
     // console.log(this.$store)
     // console.log(this.$parent);
     // console.log(this.$root);

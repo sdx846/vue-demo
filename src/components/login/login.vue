@@ -2,14 +2,15 @@
   <!-- <div class="login">
     <h1>{{ msg }}</h1>
     <el-button type="primary" @click="onLogin">登录</el-button>
-  </div> -->
-    <div class="container">
+  </div>-->
+  <div class="container">
     <el-form
       :model="ruleForm"
       :rules="rules"
       ref="ruleForm"
       label-position="left"
-      class="demo-ruleForm login-container">
+      class="demo-ruleForm login-container"
+    >
       <h3 class="title">后台管理系统</h3>
       <el-form-item prop="loginName">
         <el-input type="text" v-model="ruleForm.loginName" auto-complete="off" placeholder="账号"></el-input>
@@ -19,20 +20,28 @@
       </el-form-item>
       <el-form-item prop="cardInput">
         <el-col :span="12">
-          <el-input @keyup.native.enter="handleSubmit" v-model="ruleForm.cardInput" placeholder="请输入验证码"></el-input>
+          <el-input
+            @keyup.native.enter="handleSubmit"
+            v-model="ruleForm.cardInput"
+            placeholder="请输入验证码"
+          ></el-input>
         </el-col>
         <el-col :span="12">
           <div class="card">
-            <img :src="imgSrc" alt="" @click="getVerification">
+            <img :src="imgSrc" alt @click="getVerification" />
           </div>
         </el-col>
       </el-form-item>
       <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
       <el-form-item style="width:100%;">
         <!-- <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit" :loading="logging">登录
-        </el-button> -->
-             <el-button type="primary" style="width:100%;" @click.native.prevent="onLogin" :loading="logging">登录
-        </el-button>
+        </el-button>-->
+        <el-button
+          type="primary"
+          style="width:100%;"
+          @click.native.prevent="onLogin"
+          :loading="logging"
+        >登录</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -74,7 +83,7 @@ export default {
   },
   methods: {
     onLogin() {
-      Store.set("user_token", 'this iss token');
+      Store.set("user_token", "this iss token");
       Store.set("ps", ["XTGL", "YHGL", "JSGL", "QT"]);
       // this.$message.success("登录成功！");
       this.$message({

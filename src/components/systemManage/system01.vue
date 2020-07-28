@@ -13,7 +13,7 @@
     <create :modal-title="modalTitle" :show.sync="showModal">
       <template v-slot:todo="slotProps" >
         {{slotProps.user.firstName}}
-        <span v-for="item in slotProps.test">{{item.name}}</span>  
+        <span v-for="item in slotProps.test" :key="item">{{item.name}}</span>  
       </template> 
     </create>  
   </div>

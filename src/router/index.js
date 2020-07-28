@@ -46,9 +46,9 @@ export default new Router({
             requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
           component: () => import('@/components/other'),
-          // children: [
-          //   {path: 'other', name: '其他', component: () => import('@/components/home/other/other')},
-          // ]
+          children: [
+            {path: 'cssAnimate', name: 'css动画', component: () => import('@/components/other/cssAnimate')},
+          ]
         },
       ]
     },
