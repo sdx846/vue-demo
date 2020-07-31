@@ -42,6 +42,15 @@
               </el-form-item>
             </el-col>
           </el-row>-->
+          <el-form-item label="商户名称：" prop="commercialName">
+            <el-input
+              v-model="form.commercialName"
+              placeholder="请输入"
+              maxlength="20"
+              class="g-query-input__width"
+            ></el-input>
+            <!-- <span>{{hot}}</span> -->
+          </el-form-item>
           <el-form-item label="商户图片：" prop="pictureVOS">
             <el-upload
               :before-upload="beforeAvatarUpload"
@@ -63,10 +72,7 @@
                 style="position:relative;margin-right: 8px;"
               >
                 <img :src="item.url" class="avatar" />
-                <i
-                  class="el-icon-circle-close close-icon"
-                  @click="onDelIcon(index)"
-                ></i>
+                <i class="el-icon-circle-close close-icon" @click="onDelIcon(index)"></i>
               </span>
             </span>
             <span v-if="(!form.pictureVOS || form.pictureVOS.length===0)">--</span>
@@ -87,7 +93,7 @@ export default {
       form: {
         cmsAccount: "",
         commercialName: "",
-        pictureVOS: [] //商户图片集合 ,
+        pictureVOS: [], //商户图片集合 ,
       },
       formCopy: {},
       rules: {
@@ -114,6 +120,7 @@ export default {
           }
         ]
       },
+      // hot:'this is  hot',
       action: "", //图片上传路径
       myHeader: {
         // 上传图片加的头部信息
@@ -228,23 +235,9 @@ export default {
   background-color: rgba(255, 255, 255, 0);
   outline: none;
 }
-/* .modal-dialog .tab-container .el-form-item__content {
-  margin-left: 0 !important;
-} */
 /* 搜索框 */
-.modal-dialog .tab-container {
-  margin-top: 20px;
-  position: relative;
-}
-.modal-dialog .tab-container .g-query-input__width {
-  position: absolute;
-  right: 0;
-  z-index: 10;
-  width: 260px !important;
-}
-.modal-dialog .tab-container .g-query-input__width .el-input__inner {
-  height: 35px;
-  line-height: 35px;
+.modal-dialog .el-input__inner{
+ color:red;
 }
 /* 上传图片 */
 .modal-dialog .el-form-item__content {
