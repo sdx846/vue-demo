@@ -2,6 +2,7 @@
   <div class="other">
     <h1>{{ msg }}</h1>
     <el-button type="primary" icon="el-icon-plus" @click="onAdd">新增</el-button>
+
     <!-- 弹框  :key="Math.random()"-->
     <create
       :modal-title="modalTitle"
@@ -9,6 +10,7 @@
       @updateList="updateList"
       :id="id"
     ></create>
+    <!-- css 动画容器 -->
     <router-view></router-view>
     <!-- vuex应用 -->
     <!-- <div class='flex'>

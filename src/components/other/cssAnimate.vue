@@ -1,5 +1,6 @@
 <template>
   <div class="">
+    <el-button type="primary" icon="el-icon-plus" @click="$router.push({path:'/login'})">回到登录页</el-button>
     <ul class="loading">
       <li v-for="v in 6" :key="v" :style="`--line-index: ${v}`"></li>
     </ul>
