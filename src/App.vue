@@ -20,4 +20,5 @@ export default {
   margin-top: 60px;
 }
 *{padding:0;margin:0;border:none;}
+.flex{display: flex;}
 </style>

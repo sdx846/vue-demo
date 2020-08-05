@@ -57,6 +57,17 @@ export default new Router({
             {path: 'video5', name: 'vue-video-player05', component: () => import('@/components/other/vue-video5')},
           ]
         },
+        {
+          path: 'production',
+          name: '产品',
+          meta: {
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
+          },
+          component: () => import('@/components/production'),
+          children:[
+            {path: 'echart1', name: 'echart01', component: () => import('@/components/production/echart01.vue')},
+          ]
+        },
       ]
     },
   ]
