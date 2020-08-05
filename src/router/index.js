@@ -50,6 +50,11 @@ export default new Router({
           component: () => import('@/components/other'),
           children: [
             {path: 'cssAnimate', name: 'css动画', component: () => import('@/components/other/cssAnimate')},
+            {path: 'video1', name: 'vue-video-player01', component: () => import('@/components/other/vue-video1')},
+            {path: 'video2', name: 'vue-video-player02', component: () => import('@/components/other/vue-video2')},
+            {path: 'video3', name: 'vue-video-player03', component: () => import('@/components/other/vue-video3')},
+            {path: 'video4', name: 'vue-video-player04', component: () => import('@/components/other/vue-video4')},
+            {path: 'video5', name: 'vue-video-player05', component: () => import('@/components/other/vue-video5')},
           ]
         },
       ]

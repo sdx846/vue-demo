@@ -4,6 +4,11 @@ import Vuex from 'vuex'
 // import { Button, Input, Pagination,Message, MessageBox } from 'element-ui';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import VideoPlayer from 'vue-video-player'
+// require('vue-video-player/node_modules/video.js/dist/video-js.css')
+require('video.js/dist/video-js.css')
+require('vue-video-player/src/custom-theme.css')
+
 
 import App from './App'
 import router from './router'
@@ -13,6 +18,7 @@ import './styles/index.css'
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
+Vue.use(VideoPlayer);
 // Vue.use(Button)
 // Vue.use(Input)
 // Vue.use(Pagination)

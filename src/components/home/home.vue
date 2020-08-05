@@ -73,6 +73,31 @@
                     @click.ctrl.native="newPage('cssAnimate')"
                     @click="$router.push({path:'/home/other/cssAnimate'})"
                   >cssAnimate</el-menu-item>
+                  <el-menu-item
+                    index="home/other/video1"
+                    @click.ctrl.native="newPage('video1')"
+                    @click="$router.push({path:'/home/other/video1'})"
+                  >vue-video-player01</el-menu-item>
+                  <el-menu-item
+                    index="home/other/video2"
+                    @click.ctrl.native="newPage('video2')"
+                    @click="$router.push({path:'/home/other/video2'})"
+                  >vue-video-player02</el-menu-item>
+                  <el-menu-item
+                    index="home/other/video3"
+                    @click.ctrl.native="newPage('video3')"
+                    @click="$router.push({path:'/home/other/video3'})"
+                  >vue-video-player03</el-menu-item>
+                  <el-menu-item
+                    index="home/other/video4"
+                    @click.ctrl.native="newPage('video4')"
+                    @click="$router.push({path:'/home/other/video4'})"
+                  >vue-video-player04</el-menu-item>
+                  <el-menu-item
+                    index="home/other/video5"
+                    @click.ctrl.native="newPage('video5')"
+                    @click="$router.push({path:'/home/other/video5'})"
+                  >vue-video-player05</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
             </el-menu>
