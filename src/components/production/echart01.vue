@@ -4,12 +4,14 @@
     <div class="flex">
       <div class="part1">
         <div ref="chart1" class="chart1"></div>
+        <div ref="chart4" class="chart4"></div>
       </div>
       <div class="part2">
         <span class="part2-title">19801.23元</span>
         <span class="text1">渐变字体</span>
         <span class="text2">流光字体</span>
         <div ref="chart2" class="chart2"></div>
+        <div ref="chart3" class="chart3"></div>
       </div>
       <div class="part1"></div>
     </div>
@@ -27,10 +29,13 @@ export default {
   },
   created() {},
   mounted() {
-    this.f1();
-    // this.initChart();
+    this.f1(); //折线图
+    this.f3(); //地球1
+    this.f5(); //地球2
+    this.f6(); //饼图
   },
   methods: {
+    //折线图
     f1() {
       const myCharts = echarts.init(this.$refs.chart1);
       let option = {
@@ -152,19 +157,17 @@ export default {
 
       myCharts.setOption(option);
     },
-    //地球
+    //地球 1
     f2() {
-      const vm = this;
       const canvas = document.createElement("canvas");
-      this.mapChart = echarts.init(canvas, null, {
+      const mapChart = echarts.init(canvas, null, {
         width: 4096,
         height: 2048
       });
-      this.mapChart.setOption(
-        {
-          backgroundColor: config.map.bgColor, // 背景色
-          geo: {
-            z: 1,
+      mapChart.setOption({
+        backgroundColor: "#120f42", // 地球上海洋区域颜色#031d42
+        series: [
+          {
             type: "map",
             map: "world",
             top: 0,
@@ -174,83 +177,95 @@ export default {
             boundingCoords: [
               [-180, 90],
               [180, -90]
-            ], // 设置为一张完整经纬度的世界地图
-            nameMap: {
-              China: "中国" // 变成中文
-            },
-            label: {
-              show: config.map.textLabel.isTextLabel, // 是否显示文本
-              color: config.map.textLabel.textColor // 文本颜色
-            },
-            itemStyle: {
-              // 地图区域的多边形 图形样式。 默认样试。
-              normal: {
-                color: {
-                  type: "linear",
-                  x: 100,
-                  y: 12,
-                  x2: 12,
-                  y2: 100,
-                  colorStops: [
-                    {
-                      offset: 0,
-                      color: config.map.area.areaColor[0] // 0% 处的颜色
-                    },
-                    {
-                      offset: 1,
-                      color: config.map.area.areaColor[1] // 100% 处的颜色
-                    }
-                  ],
-                  global: config.map.area.isGlobal // 缺省为 false
-                },
-                borderColor: config.map.area.borderColor, // 边框线
-                borderWidth: config.map.area.borderWidth * common.getFontSize(), // 线宽
-                borderType: config.map.area.borderType, // 支持 'solid', 'dashed', 'dotted'。
-                shadowColor: config.map.area.shadowColor[0], // 阴影颜色
-                shadowBlur: config.map.area.shadowBlur * common.getFontSize(), // 模糊大小
-                shadowOffsetX:
-                  config.map.area.shadowOffsetX * common.getFontSize(), // 水平偏移
-                shadowOffsetY:
-                  config.map.area.shadowOffsetY * common.getFontSize() // 垂直偏移
-              }
-            },
-            emphasis: {
-              // 高亮状态下的多边形和标签样式。
-              label: {
-                // 文本
-                show: config.map.textLabel.isTextLabel,
-                color: config.map.textLabel.emphasizeColor
-              },
-              itemStyle: {
-                // 区域
-                areaColor: config.map.area.emphasizeAreaColor
-              }
-            },
-            regions: [
-              {
-                name: "中国",
-                itemStyle: {
-                  normal: {
-                    // areaColor: config.map.area.chinaColor,
-                  }
-                }
-              }
-            ] // 区域块的颜色
+            ] // 设置为一张完整经纬度的世界地图
           }
-        },
-        true
-      );
+        ]
+      });
+      return mapChart;
     },
-    initMap(config) {
-      const vm = this;
+    f3() {
+      const chart = echarts.init(this.$refs.chart2);
+      const option = {
+        backgroundColor: "transparent", //"#031d42"
+        globe: {
+          show: true,
+          roam: false, // 是否允许鼠标滚动放大，缩小
+          baseTexture: this.f2(),
+          shading: "lambert", // 地球中三维图形的着色效果,通过经典的 lambert 着色表现光照带来的明
+          light: {
+            ambient: {
+              // 环境光
+              color: "#fff", // 颜色
+              intensity: 0.5 // 光的强度
+            },
+            main: {
+              // 太阳光
+              color: "#27ff00", // 颜色
+              intensity: 0.5, // 主光源的强度
+              shadow: false
+            }
+          },
+          viewControl: {
+            autoRotate: true // 自动旋转关闭
+          },
+          globeRadius: 50,
+          globeOuterRadius: 100
+        },
+        //绘制攻击性
+        series: [
+          {
+            type: "lines3D",
+            coordinateSystem: "globe",
+            blendMode: "lighter",
+            effect: {
+              show: true,
+              trailWidth: 1.2,
+              trailLength: 0.5,
+              trailOpacity: 1,
+              trailColor: "#1ec5d6" //rgb(30,30,60)
+            },
+            lineStyle: {
+              //   color: "#fff",
+              width: 2,
+              opacity: 1
+            },
+            data: [
+              [
+                [-99.681897, 32.411319],
+                [-97.037997, 32.896828]
+              ],
+              [
+                [-9.681897, 3.41139],
+                [-97.037997, 32.896828]
+              ],
+              [
+                [173.27, 1.13],
+                [-97.037997, 32.896828]
+              ],
+              [
+                [-60.230519, 120.611289],
+                [-97.037997, 32.896828]
+              ],
+              [
+                [-40.230519, 2.611289],
+                [-97.037997, 32.896828]
+              ]
+            ]
+          }
+        ]
+      };
+      chart.setOption(option);
+    },
+    //地球2
+    f4() {
       const canvas = document.createElement("canvas");
-      this.mapChart = echarts.init(canvas, null, {
+      const mapChart = echarts.init(canvas, null, {
         width: 4096,
         height: 2048
       });
-      this.mapChart.setOption(
+      mapChart.setOption(
         {
-          backgroundColor: config.map.bgColor, // 背景色
+          backgroundColor: "#120f42", // 地球上海洋区域颜色#031d42
           geo: {
             z: 1,
             type: "map",
@@ -267,12 +282,13 @@ export default {
               China: "中国" // 变成中文
             },
             label: {
-              show: config.map.textLabel.isTextLabel, // 是否显示文本
-              color: config.map.textLabel.textColor // 文本颜色
+              show: false, // 是否显示文本
+              color: "red" // 文本颜色
             },
             itemStyle: {
               // 地图区域的多边形 图形样式。 默认样试。
               normal: {
+                //设置渐变颜色
                 color: {
                   type: "linear",
                   x: 100,
@@ -282,44 +298,43 @@ export default {
                   colorStops: [
                     {
                       offset: 0,
-                      color: config.map.area.areaColor[0] // 0% 处的颜色
+                      color: "#557dd8" // 地球上非海洋区域0% 处的颜色
                     },
                     {
                       offset: 1,
-                      color: config.map.area.areaColor[1] // 100% 处的颜色
+                      color: "#3929c1" // 地球上非海洋区域100% 处的颜色
                     }
                   ],
-                  global: config.map.area.isGlobal // 缺省为 false
+                  global: true // 缺省为 false
                 },
-                borderColor: config.map.area.borderColor, // 边框线
-                borderWidth: config.map.area.borderWidth * common.getFontSize(), // 线宽
-                borderType: config.map.area.borderType, // 支持 'solid', 'dashed', 'dotted'。
-                shadowColor: config.map.area.shadowColor[0], // 阴影颜色
-                shadowBlur: config.map.area.shadowBlur * common.getFontSize(), // 模糊大小
-                shadowOffsetX:
-                  config.map.area.shadowOffsetX * common.getFontSize(), // 水平偏移
-                shadowOffsetY:
-                  config.map.area.shadowOffsetY * common.getFontSize() // 垂直偏移
+                borderColor: "#ddd", // 地球上各区域连接的边框线颜色
+                borderWidth: 1, // 边框线线宽
+                borderType: "dashed", // 边框线支持 'solid', 'dashed', 'dotted'。
+                shadowColor: "#7277b5", // 边框线阴影颜色
+                shadowBlur: 6, // 模糊大小
+                shadowOffsetX: 6, // 水平偏移
+                shadowOffsetY: 6 // 垂直偏移
               }
             },
             emphasis: {
               // 高亮状态下的多边形和标签样式。
               label: {
                 // 文本
-                show: config.map.textLabel.isTextLabel,
-                color: config.map.textLabel.emphasizeColor
+                show: true,
+                color: "red"
               },
               itemStyle: {
                 // 区域
-                areaColor: config.map.area.emphasizeAreaColor
+                areaColor: "#451a6d" //鼠标移到地图区域时的区域颜色
               }
             },
+            //特别标出的地图区域
             regions: [
               {
                 name: "中国",
                 itemStyle: {
                   normal: {
-                    // areaColor: config.map.area.chinaColor,
+                    areaColor: "#24cac2" //将地球上中国区域的颜色标记为#24cac2
                   }
                 }
               }
@@ -328,63 +343,196 @@ export default {
         },
         true
       );
+      return mapChart;
     },
     // 初始化地球
-    initChart() {
-      const vm = this;
-    //   //   vm.chart = echarts.init(document.getElementById(vm.dataInfo.id));
-    //   vm.chart = echarts.init(this.$refs.chart2);
-    //   const data = vm.resetData(vm.dataInfo.data.graphData.series[0].data);
-    //   const { unit } = vm.dataInfo.data.graphData.otherData || "";
-    //   const config = vm.getEarthConfig();
-    //   vm.initMap(config);
-    //   const bgImg = config.earth.bgImg || "";
-    //   // 地球
-    //   const option = {
-    //     backgroundColor: "",
-    //     globe: {
-    //       roam: false, // 是否允许鼠标滚动放大，缩小
-    //       baseTexture: this.mapChart,
-    //       environment: bgImg == "" ? "" : require(`../../../${bgImg}`),
-    //       shading: config.earth.shading, // 地球中三维图形的着色效果,通过经典的 lambert 着色表现光照带来的明
-    //       light: {
-    //         ambient: {
-    //           // 环境光
-    //           color: config.earth.enLightColor, // 颜色
-    //           intensity: config.earth.enIntensity // 光的强度
-    //         },
-    //         main: {
-    //           // 太阳光
-    //           color: config.earth.lightColor, // 颜色
-    //           intensity: config.earth.intensity, // 主光源的强度
-    //           shadow: false
-    //         }
-    //       },
-    //       postEffect: {
-    //         // 后处理特效的相关配置
-    //         enable: true,
-    //         bloom: {
-    //           // 高光特效
-    //           enable: true
-    //         },
-    //         depthOfField: {
-    //           // 景深效果
-    //           enable: false
-    //         }
-    //       },
-    //       viewControl: {
-    //         autoRotate: config.earth.isAutoRotate, // 自动旋转关闭
-    //         autoRotateSpeed: config.earth.autoRotateSpeed,
-    //         targetCoord: [100.46, 39.92], // 定位到中国
-    //         zoomSensitivity: config.earth.isZoom == true ? 1 : 0 // 是否可缩放
-    //       }
-    //     },
-    //     series: vm.rebuildSeriesData(data, config, unit)
-    //   };
-    //   vm.chart.setOption(option, true);
-    //   // 点击事件
-    //   this.mapChart.on("click", params => {});
-    //   this.chart.on("click", params => {});
+    f5() {
+      const chart = echarts.init(this.$refs.chart3);
+      let mapChart = this.f4();
+      // 地球
+      const option = {
+        backgroundColor: "transparent",
+        globe: {
+          roam: false, // 是否允许鼠标滚动放大，缩小
+          baseTexture: mapChart,
+          //   environment: bgImg == "" ? "" : require(`../../../${bgImg}`),
+          shading: "lambert", // 地球中三维图形的着色效果,通过经典的 lambert 着色表现光照带来的明
+          light: {
+            ambient: {
+              // 环境光
+              color: "#fff", // 颜色
+              intensity: 0.5 // 光的强度
+            },
+            main: {
+              // 太阳光
+              color: "#27ff00", // 颜色
+              intensity: 0.5, // 主光源的强度
+              shadow: false
+            }
+          },
+          postEffect: {
+            // 后处理特效的相关配置
+            enable: true,
+            bloom: {
+              // 高光特效
+              enable: true
+            },
+            depthOfField: {
+              // 景深效果
+              enable: false
+            }
+          },
+          viewControl: {
+            autoRotate: true, // 自动旋转关闭
+            autoRotateSpeed: 10,
+            targetCoord: [100.46, 39.92], // 定位到中国
+            zoomSensitivity: 1 // 是否可缩放1或者0
+          }
+        },
+        series: [
+          {
+            type: "lines3D",
+            coordinateSystem: "globe",
+            blendMode: "lighter",
+            effect: {
+              show: true,
+              trailWidth: 1.2,
+              trailLength: 0.5,
+              trailOpacity: 1,
+              trailColor: "#1ec5d6" //rgb(30,30,60)
+            },
+            lineStyle: {
+              color: "#24cac2",
+              width: 1,
+              opacity: 1
+            },
+            data: [
+              [
+                [-99.681897, 32.411319],
+                [-97.037997, 32.896828]
+              ],
+              [
+                [-9.681897, 3.41139],
+                [-97.037997, 32.896828]
+              ],
+              [
+                [173.27, 1.13],
+                [-97.037997, 32.896828]
+              ],
+              [
+                [-60.230519, 120.611289],
+                [-97.037997, 32.896828]
+              ],
+              [
+                [-40.230519, 2.611289],
+                [-97.037997, 32.896828]
+              ]
+            ]
+          }
+        ]
+      };
+      chart.setOption(option, true);
+      // 点击事件
+      mapChart.on("click", params => {
+        console.log("1");
+      });
+      chart.on("click", params => {
+        console.log("2");
+      });
+    },
+    //饼图
+    f6() {
+      const myCharts = echarts.init(this.$refs.chart4);
+      let option = {
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        title: {
+          text: "目标达成率",
+          textStyle: {
+            color: "#fff",
+            fontSize: 14
+          }
+        },
+        // legend: {
+        //   orient: "vertical",
+        //   left: 10,
+        //   data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎"]
+        // },
+        series: [
+          {
+            name: "访问来源", //tooltip里显示的大标题
+            type: "pie",
+            center: [80, 90],
+            radius: ["50%", "70%"], //半径
+            avoidLabelOverlap: true, //是否启用防止标签重叠策略，默认开启。
+            minAngle: 5, 
+            minShowLabelAngle:90,//小于这个角度（0 ~ 360）的扇区，不显示标签（label 和 labelLine）。
+            stillShowZeroSum: true, //是否在数据和为0（一般情况下所有数据为0） 的时候不显示扇区。
+            roseType: true, //是否展示成南丁格尔图，通过半径区分数据大小。值越大，对应的半径越大。
+            //饼图图形上的文本标签
+            label: {
+              show: true,
+              position: "center", //'inner' 同 'inside' ,'outside','center'
+              //   formatter: '{b}: {d}'
+              formatter: "{d}",
+              //   rotate:true,//标签旋转
+              color: "#557dd8", //标签文字颜色
+            //   backgroundColor: "#ddd", //文字块背景色。
+              padding: 5
+            },
+            //标签的视觉引导线样式
+            // labelLine: {
+            //   show: true,
+            //   length: 10,
+            //   lineStyle: {
+            //     color: "#fff",
+            //     width: 1,
+            //     type: "solid"
+            //   }
+            // },
+            //图形样式。
+            itemStyle: {
+              //   color: "",//不填会自适应颜色。填写了颜色所有区块都是这个色。这里支持{},可以自定义区块颜色，支持渐变色。
+              //   color: {
+              //     type: "linear",
+              //     x: 0,
+              //     y: 0,
+              //     x2: 0,
+              //     y2: 1,
+              //     colorStops: [
+              //       {
+              //         offset: 0,
+              //         color: "red" // 0% 处的颜色
+              //       },
+              //       {
+              //         offset: 1,
+              //         color: "blue" // 100% 处的颜色
+              //       }
+              //     ],
+              //     global: false // 缺省为 false
+              //   },
+            },
+            //高亮的扇区和标签样式。即鼠标移动到某块上面时，某块的样式。
+            emphasis: {
+              //饼图中间高亮显示时字体的样式
+              label: {
+                show: true,
+                fontSize: "20",
+                fontWeight: "bold"
+              }
+            },
+            data: [
+              { value: 335, name: "直接访问" },
+              { value: 310, name: "邮件营销" },
+              { value: 1548, name: "搜索引擎", selected: true }
+              //   { value: 1548, name: "搜索引擎"},
+            ]
+          }
+        ]
+      };
+      myCharts.setOption(option);
     }
   }
 };
@@ -451,5 +599,17 @@ export default {
   100% {
     background-position: -100% 0;
   }
+}
+.chart2 {
+  width: 100%;
+  height: 300px;
+}
+.chart3 {
+  width: 100%;
+  height: 300px;
+}
+.chart4 {
+  width: 60%;
+  height: 200px;
 }
 </style>
