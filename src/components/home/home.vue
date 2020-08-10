@@ -101,7 +101,6 @@
                 </el-menu-item-group>
               </el-submenu>
 
-              
               <el-submenu index="home/production">
                 <template slot="title">
                   <i class="el-icon-setting"></i>
@@ -113,6 +112,11 @@
                     @click.ctrl.native="newPage('echart1')"
                     @click="$router.push({path:'/home/production/echart1'})"
                   >echart01</el-menu-item>
+                  <el-menu-item
+                    index="home/production/echart2"
+                    @click.ctrl.native="newPage('echart2')"
+                    @click="$router.push({path:'/home/production/echart2'})"
+                  >echart02</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
             </el-menu>

@@ -66,6 +66,7 @@ export default new Router({
           component: () => import('@/components/production'),
           children:[
             {path: 'echart1', name: 'echart01', component: () => import('@/components/production/echart01.vue')},
+            {path: 'echart2', name: 'echart02', component: () => import('@/components/production/echart02.vue')},
           ]
         },
       ]
