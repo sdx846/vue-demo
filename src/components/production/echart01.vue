@@ -5,6 +5,7 @@
       <div class="part1">
         <div ref="chart1" class="chart1"></div>
         <div ref="chart4" class="chart4"></div>
+        <div ref="chart5" class="chart5"></div>
       </div>
       <div class="part2">
         <span class="part2-title">19801.23元</span>
@@ -13,7 +14,9 @@
         <div ref="chart2" class="chart2"></div>
         <div ref="chart3" class="chart3"></div>
       </div>
-      <div class="part1"></div>
+      <div class="part3">
+        <div ref="chart6" class="chart6"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +27,7 @@ import world from "echarts/map/js/world";
 import "echarts-gl";
 
 export default {
+  // inject:['reload'],
   data() {
     return {};
   },
@@ -33,6 +37,16 @@ export default {
     this.f3(); //地球1
     this.f5(); //地球2
     this.f6(); //饼图
+    this.f7(); //柱状图1
+    this.f8(); //柱状图2
+    //echart图的自适应可以在图片渲染方法里写自适应方法
+    // this.$nextTick(() => {
+    //   window.addEventListener("resize", () => {
+    //     // window.reload(); //方法：没有效果
+    //     // this.$router.go(0);//方法一：整个网页url刷新
+    //     // this.reload();//方法二：不是url刷新。页面缩小时等待一会儿布局跟着缩放。页面放大时，布局不会跟着放大，效果不理想。
+    //   });
+    // });
   },
   methods: {
     //折线图
@@ -63,6 +77,7 @@ export default {
         //     saveAsImage: {}
         //   }
         // },
+        //x轴（含轴上标签，线，网格）
         xAxis: {
           type: "category",
           boundaryGap: false,
@@ -117,6 +132,7 @@ export default {
             }
           }
         },
+        //数据
         series: [
           {
             name: "邮件营销",
@@ -130,6 +146,7 @@ export default {
               color: "yellow",
               width: 3
             },
+            //折线下方区域
             areaStyle: {
               color: "#ddd"
             },
@@ -156,6 +173,11 @@ export default {
       };
 
       myCharts.setOption(option);
+      window.addEventListener("resize", () => {
+        if (myCharts) {
+          myCharts.resize();
+        }
+      });
     },
     //地球 1
     f2() {
@@ -184,7 +206,7 @@ export default {
       return mapChart;
     },
     f3() {
-      const chart = echarts.init(this.$refs.chart2);
+      const myCharts = echarts.init(this.$refs.chart2);
       const option = {
         backgroundColor: "transparent", //"#031d42"
         globe: {
@@ -254,7 +276,12 @@ export default {
           }
         ]
       };
-      chart.setOption(option);
+      myCharts.setOption(option);
+      window.addEventListener("resize", () => {
+        if (myCharts) {
+          myCharts.resize();
+        }
+      });
     },
     //地球2
     f4() {
@@ -439,6 +466,11 @@ export default {
       chart.on("click", params => {
         console.log("2");
       });
+      window.addEventListener("resize", () => {
+        if (chart) {
+          chart.resize();
+        }
+      });
     },
     //饼图
     f6() {
@@ -467,8 +499,8 @@ export default {
             center: [80, 90],
             radius: ["50%", "70%"], //半径
             avoidLabelOverlap: true, //是否启用防止标签重叠策略，默认开启。
-            minAngle: 5, 
-            minShowLabelAngle:90,//小于这个角度（0 ~ 360）的扇区，不显示标签（label 和 labelLine）。
+            minAngle: 5,
+            minShowLabelAngle: 90, //小于这个角度（0 ~ 360）的扇区，不显示标签（label 和 labelLine）。
             stillShowZeroSum: true, //是否在数据和为0（一般情况下所有数据为0） 的时候不显示扇区。
             roseType: true, //是否展示成南丁格尔图，通过半径区分数据大小。值越大，对应的半径越大。
             //饼图图形上的文本标签
@@ -479,7 +511,7 @@ export default {
               formatter: "{d}",
               //   rotate:true,//标签旋转
               color: "#557dd8", //标签文字颜色
-            //   backgroundColor: "#ddd", //文字块背景色。
+              //   backgroundColor: "#ddd", //文字块背景色。
               padding: 5
             },
             //标签的视觉引导线样式
@@ -533,6 +565,264 @@ export default {
         ]
       };
       myCharts.setOption(option);
+      window.addEventListener("resize", () => {
+        if (myCharts) {
+          myCharts.resize();
+        }
+      });
+    },
+    //柱状图：y轴方向排列
+    f7() {
+      const myCharts = echarts.init(this.$refs.chart6);
+      let seriesLabel = {
+        normal: {
+          show: false,
+          textBorderColor: "#333",
+          textBorderWidth: 2
+        }
+      };
+      let option = {
+        title: {
+          text: "热销产品排行",
+          textStyle: {
+            color: "#fff",
+            fontSize: 14
+          }
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        grid: {
+          left: 100
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: "value",
+          name: "Days",
+          axisLabel: {
+            formatter: "{value}",
+            color: "#fff"
+          },
+          //x轴线
+          axisLine: {
+            show: true,
+            lineStyle: {
+              type: "solid",
+              color: "#423f3f",
+              width: 0.5
+            }
+          },
+          //x轴上网格线
+          splitLine: {
+            show: true, //是否显示网格线
+            lineStyle: {
+              type: "dashed",
+              color: ["#423f3f", "#fff"]
+            }
+          }
+        },
+        yAxis: {
+          type: "category",
+          inverse: true,
+          data: ["A", "B", "C", "D", "E"],
+          axisLabel: {
+            formatter: function(value) {
+              return "{" + value + "| }\n{value|" + value + "}";
+            },
+            color: "#fff",
+            margin: 20,
+            rich: {
+              value: {
+                lineHeight: 30,
+                align: "center"
+              },
+              Sunny: {
+                height: 40,
+                align: "center"
+              },
+              Cloudy: {
+                height: 40,
+                align: "center"
+              },
+              Showers: {
+                height: 40,
+                align: "center"
+              }
+            }
+          },
+          axisLine: {
+            show: true,
+            lineStyle: {
+              type: "solid",
+              color: "#423f3f",
+              width: 0.5
+            }
+          }
+        },
+        series: [
+          {
+            name: "City Alpha",
+            type: "bar",
+            roundCap: true,
+            data: [165, 170, 30, 50, 140],
+            label: seriesLabel,
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#83bff6" },
+                { offset: 0.5, color: "#188df0" },
+                { offset: 1, color: "#188df0" }
+              ])
+            },
+            emphasis: {
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: "#2378f7" },
+                  { offset: 0.7, color: "#2378f7" },
+                  { offset: 1, color: "#83bff6" }
+                ])
+              }
+            }
+          },
+          {
+            name: "City Beta",
+            type: "bar",
+            roundCap: true,
+            label: seriesLabel,
+            data: [150, 105, 60, 66, 30],
+            itemStyle: {
+              color: {
+                type: "linear",
+                x: 100,
+                y: 12,
+                x2: 12,
+                y2: 100,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: "#f17a34" // 地球上非海洋区域0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: "#e2c225" // 地球上非海洋区域100% 处的颜色
+                  }
+                ],
+                global: true // 缺省为 false
+              }
+            }
+          }
+        ]
+      };
+      myCharts.setOption(option);
+      window.addEventListener("resize", () => {
+        if (myCharts) {
+          myCharts.resize();
+        }
+      });
+    },
+    //柱状图： x方向排列，y轴有正负
+    f8() {
+      const myCharts = echarts.init(this.$refs.chart5);
+      let option = {
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+          }
+        },
+        grid: {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true
+        },
+        xAxis: [
+          {
+            type: "category",
+            data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+            axisLabel: {
+              color: "#fff"
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                type: "solid",
+                color: "#423f3f",
+                width: 0.5
+              }
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: "value",
+            // inverse: true
+            axisLabel: {
+              color: "#fff"
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                type: "solid",
+                color: "#423f3f",
+                width: 0.5
+              }
+            },
+            splitLine: {
+              show: true, //是否显示网格线
+              lineStyle: {
+                type: "solid",
+                color: "#423f3f"
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            name: "百度",
+            type: "bar",
+            barWidth: 5,
+            stack: "搜索引擎",
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#83bff6" },
+                { offset: 0.5, color: "#188df0" },
+                { offset: 1, color: "#188df0" }
+              ]),
+              barBorderRadius: [24, 24, 0, 0]
+            }
+          },
+          {
+            name: "谷歌",
+            type: "bar",
+            stack: "搜索引擎",
+            data: [-120, -132, -101, -134, -290, -230, -220],
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#f17a34" },
+                { offset: 0.5, color: "#e2c225" },
+                { offset: 1, color: "#e2c225" }
+              ]),
+              barBorderRadius: [0, 0, 24, 24]
+            }
+          }
+        ]
+      };
+      myCharts.setOption(option);
+      window.addEventListener("resize", () => {
+        if (myCharts) {
+          myCharts.resize();
+        }
+      });
     }
   }
 };
@@ -552,10 +842,19 @@ export default {
   margin-bottom: 20px;
 }
 .part1 {
-  flex: 1;
+  /* flex: 3; */
+  display: inline-block;
+  width: 25%;
 }
 .part2 {
-  flex: 3;
+  /* flex: 5; */
+  display: inline-block;
+  width: 41.6%;
+}
+.part3 {
+  /* flex: 4; */
+  display: inline-block;
+  width: 33%;
 }
 .chart1 {
   width: 100%;
@@ -611,5 +910,13 @@ export default {
 .chart4 {
   width: 60%;
   height: 200px;
+}
+.chart5 {
+  width: 100%;
+  height: 400px;
+}
+.chart6 {
+  width: 100%;
+  height: 400px;
 }
 </style>
