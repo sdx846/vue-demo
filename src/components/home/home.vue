@@ -116,12 +116,22 @@
                     index="home/production/echart2"
                     @click.ctrl.native="newPage('echart2')"
                     @click="$router.push({path:'/home/production/echart2'})"
-                  >echart02</el-menu-item>
+                  >echart02-地图</el-menu-item>
                   <el-menu-item
                     index="home/production/echart3"
                     @click.ctrl.native="newPage('echart3')"
                     @click="$router.push({path:'/home/production/echart3'})"
-                  >echart03</el-menu-item>
+                  >echart03-地图</el-menu-item>
+                  <el-menu-item
+                    index="home/production/echart4"
+                    @click.ctrl.native="newPage('echart4')"
+                    @click="$router.push({path:'/home/production/echart4'})"
+                  >echart04-百度地图</el-menu-item>
+                  <el-menu-item
+                    index="home/production/echart5"
+                    @click.ctrl.native="newPage('echart5')"
+                    @click="$router.push({path:'/home/production/echart5'})"
+                  >echart05-百度地图2</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
             </el-menu>

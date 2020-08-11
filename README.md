@@ -1,6 +1,6 @@
 # vue-demo
 
-> A Vue.js project
+> A Vue.js project。包含echart地球地图的绘制。echart提供了地图的json文件。
 
 ## Build Setup
 

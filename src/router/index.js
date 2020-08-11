@@ -66,8 +66,10 @@ export default new Router({
           component: () => import('@/components/production'),
           children:[
             {path: 'echart1', name: 'echart01', component: () => import('@/components/production/echart01.vue')},
-            {path: 'echart2', name: 'echart02', component: () => import('@/components/production/echart02-map.vue')},
-            {path: 'echart3', name: 'echart03', component: () => import('@/components/production/echart03-map.vue')},
+            {path: 'echart2', name: 'echart02-地图', component: () => import('@/components/production/echart02-map.vue')},
+            {path: 'echart3', name: 'echart03-地图', component: () => import('@/components/production/echart03-map.vue')},
+            {path: 'echart4', name: 'echart04-百度地图', component: () => import('@/components/production/echart04-baiduMap.vue')},
+            {path: 'echart5', name: 'echart05-百度地图2', component: () => import('@/components/production/echart05-baiduMap2.vue')},
           ]
         },
       ]
