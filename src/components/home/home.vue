@@ -117,6 +117,11 @@
                     @click.ctrl.native="newPage('echart2')"
                     @click="$router.push({path:'/home/production/echart2'})"
                   >echart02</el-menu-item>
+                  <el-menu-item
+                    index="home/production/echart3"
+                    @click.ctrl.native="newPage('echart3')"
+                    @click="$router.push({path:'/home/production/echart3'})"
+                  >echart03</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
             </el-menu>
