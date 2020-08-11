@@ -5,8 +5,11 @@
 </template>
 
 <script>
+import axios from "axios";
 import echarts from "echarts/lib/echarts";
+// import "echarts/lib/chart/map"; 
 import world from "echarts/map/js/world";
+import china from "echarts/map/js/china";
 import "echarts-gl";
 
 export default {
@@ -19,6 +22,10 @@ export default {
   methods: {
     f1() {
       const myCharts = echarts.init(this.$refs.chart1);
+      // 监听屏幕变化自动缩放图表
+      window.addEventListener("resize", function() {
+        chart.resize();
+      });
       let option = {
         roam: true, //是否开启鼠标缩放和平移漫游。
         backgroundColor: "#120f42", // 地球上海洋区域颜色#031d42
@@ -29,7 +36,7 @@ export default {
             // center: [115.97, 29.71],//当前视角的中心点，用经纬度表示
             //  aspectScale:'0.75',//这个参数用于 scale 地图的长宽比。
             // zoom:1,//当前视角的缩放比例。
-            map: "world",
+            map: "world",//china world
             top: 0,
             left: 0, // 绘制完整尺寸的 echarts 实例
             right: 0,
@@ -102,7 +109,8 @@ export default {
                   y: 100
                 }
               ]
-            }
+            },
+            // data:china,
           }
         ]
       };

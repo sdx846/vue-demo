@@ -21,9 +21,8 @@ export default {
       const myCharts = echarts.init(this.$refs.chart1);
       let option = {
         title: {
-          text: "World Population (2010)",
-          subtext:
-            "from United Nations, Total population, both sexes combined, as of 1 July (thousands)",
+          text: "世界地图",
+          subtext: "this is demo",
           sublink: "http://esa.un.org/wpp/Excel-Data/population.htm",
           left: "center",
           top: "top"
@@ -62,7 +61,7 @@ export default {
         },
         series: [
           {
-            name: "World Population (2010)",
+            name: "世界地图",
             type: "map",
             mapType: "world",
             roam: true,
