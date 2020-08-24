@@ -177,6 +177,8 @@
 // Vue.use(MenuItem);
 // Vue.use(MenuItemGroup);
 import Store from "../../store/store";
+import eventBus from '../../common/eventBus';
+
 export default {
   // name: 'home',
   data() {
@@ -208,6 +210,9 @@ export default {
     // console.log(this.$els);
     // console.log(this.$data);
     // console.log(this.$options);
+
+    //发布者：发布消息
+    eventBus.$emit('toHome','home加载成功');
   },
   watch: {
     $route() {

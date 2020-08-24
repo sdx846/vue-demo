@@ -50,6 +50,8 @@
 <script>
 //  import {login as loginApi} from '../../api/api'
 import Store from "../../store/store";
+import eventBus from "../../common/eventBus";
+
 export default {
   // name: 'login',
   data() {
@@ -80,8 +82,18 @@ export default {
     // }
     // this.getCookie();
     // this.getVerification();
+
+    //订阅者：订阅消息（事件）
+    eventBus.$on("toHome", this.toHome1);
+    eventBus.$on("toHome", this.toHome2);
   },
   methods: {
+    toHome1(e) {
+      console.log(e);
+    },
+    toHome2(e) {
+      console.log(e);
+    },
     onLogin() {
       Store.set("user_token", "this iss token");
       Store.set("ps", ["XTGL", "YHGL", "JSGL", "QT"]);
