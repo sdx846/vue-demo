@@ -6,16 +6,19 @@
       <p>{{obj.str}}</p>
     </div>
     <div class="flex">
-      <div class="btn" @click="onAdd">新增</div>
+           <div class="btn" @click="onAdd">新增</div>
       <div class="btn" @click="onEdit">编辑</div>
       <div class="btn" @click="onChangeObj">更改obj的str</div>
     </div>
-    <create :modal-title="modalTitle" :show.sync="showModal">
-      <template v-slot:todo="slotProps" >
+    <create :modal-title="modalTitle" :show.sync="showModal" ref="create">
+      <template v-slot:todo="slotProps">
         {{slotProps.user.firstName}}
-        <span v-for="item in slotProps.test" :key="item.name">{{item.name}}</span>  
-      </template> 
-    </create>  
+        <span
+          v-for="item in slotProps.test"
+          :key="item.name"
+        >{{item.name}}</span>
+      </template>
+    </create>
   </div>
 </template>
 
@@ -26,42 +29,50 @@ export default {
   data() {
     return {
       msg: "this is system01 page",
-      modalTitle:'',
-      showModal:false,
-      str:'str',
-      obj:{str:'obj str'},
+      modalTitle: "",
+      showModal: false,
+      str: "str",
+      obj: { str: "obj str" }
     };
   },
   components: {
     create: Create
   },
+  created() {
+    // console.log(this);
+  },
+  mounted() {
+    //父组件获取子组件的属性和方法：this.$refs.create只能在mounted中才有值
+    console.log(this.$refs.create.msg);
+  },
   methods: {
-    onAdd(){
-      let that=this;
-      that.modalTitle="新增";
-      that.showModal=true;
+    onAdd() {
+      let that = this;
+      // this.$refs.create.msg='msg2';
+      that.modalTitle = "新增";
+      that.showModal = true;
     },
-    onEdit(){
-      let that=this;
-      that.modalTitle="编辑";
-      that.showModal=true;
+    onEdit() {
+      let that = this;
+      that.modalTitle = "编辑";
+      that.showModal = true;
     },
-    onChangeObj(){
-      let that=this;
-      that.obj.str="这是改变后的str";
-    },
+    onChangeObj() {
+      let that = this;
+      that.obj.str = "这是改变后的str";
+    }
   }
 };
 </script>
 
 <style scoped>
-  .btn{
-    width:90px;
-    height:40px;
-    line-height:40px;
-    text-align: center;
-    border-radius:16px;
-    background-color:#19e5db;
-    margin-bottom:10px;
-  }
+.btn {
+  width: 90px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 16px;
+  background-color: #19e5db;
+  margin-bottom: 10px;
+}
 </style>

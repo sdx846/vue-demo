@@ -10,13 +10,9 @@
       <!-- 表单 -->
       <el-form :model="form" ref="form" :rules="rules" label-width="100px" label-position="left">
         <h4 class="title">systeom01信息</h4>
-        <div>
-         {{modalTitle}}
-        </div>
+        <div>{{modalTitle}}</div>
         <div>------开始插槽----------</div>
-        <slot name="todo" :user="user" :test="test">
-          默认{{ user.lastName }}
-        </slot> 
+        <slot name="todo" :user="user" :test="test">默认{{ user.lastName }}</slot>
         <div>------结束插槽----------</div>
       </el-form>
     </el-dialog>
@@ -30,17 +26,17 @@
 export default {
   data() {
     return {
-      user:{
-        lastName:"名",
-        firstName:"姓"
+      msg:'msg1',
+      user: {
+        lastName: "名",
+        firstName: "姓"
       },
-      test:[
-        {id:1,name:'lili1'},
-        {id:2,name:'lili2'},
-        {id:3,name:'lili3'},
+      test: [
+        { id: 1, name: "lili1" },
+        { id: 2, name: "lili2" },
+        { id: 3, name: "lili3" }
       ],
-      form: {
-      },
+      form: {},
       formCopy: {},
       rules: {
         phone: [
@@ -51,11 +47,18 @@ export default {
             trigger: "blur"
           }
         ]
-      },
+      }
     };
   },
   props: ["modalTitle", "show"],
-  created() {},
+  created() {
+    //获取到父组件中属性和方法:
+    // console.log(this.$parent.modalTitle);//结果是父组件初始化时的值
+  },
+  updated() {
+    // console.log(this.$parent.modalTitle);//是最新的值
+    // console.log(this.msg);
+  },
   watch: {
     // show(newVal, oldVal) {
     //   if (newVal && this.modalTitle === "详情") {
@@ -67,8 +70,7 @@ export default {
     //关闭弹框
     onCloseDialog() {
       this.$emit("update:show", false);
-    },
-   
+    }
   }
 };
 </script>
