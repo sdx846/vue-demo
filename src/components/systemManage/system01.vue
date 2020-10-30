@@ -23,46 +23,46 @@
 </template>
 
 <script>
-import Create from "./create-system01";
+import Create from './create-system01';
 export default {
   // name: 'system01',
-  data() {
+  data () {
     return {
-      msg: "this is system01 page",
-      modalTitle: "",
+      msg: 'this is system01 page',
+      modalTitle: '',
       showModal: false,
-      str: "str",
-      obj: { str: "obj str" }
-    };
+      str: 'str',
+      obj: { str: 'obj str' }
+    }
   },
   components: {
     create: Create
   },
-  created() {
+  created () {
     // console.log(this);
   },
-  mounted() {
-    //父组件获取子组件的属性和方法：this.$refs.create只能在mounted中才有值
-    console.log(this.$refs.create.msg);
+  mounted () {
+    // 父组件获取子组件的属性和方法：this.$refs.create只能在mounted中才有值
+    console.log(this.$refs.create.msg)
   },
   methods: {
-    onAdd() {
+    onAdd () {
       let that = this;
       // this.$refs.create.msg='msg2';
-      that.modalTitle = "新增";
+      that.modalTitle = '新增';
       that.showModal = true;
     },
-    onEdit() {
+    onEdit () {
       let that = this;
-      that.modalTitle = "编辑";
+      that.modalTitle = '编辑';
       that.showModal = true;
     },
-    onChangeObj() {
+    onChangeObj () {
       let that = this;
-      that.obj.str = "这是改变后的str";
+      that.obj.str = '这是改变后的str';
     }
   }
-};
+}
 </script>
 
 <style scoped>
