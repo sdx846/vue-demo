@@ -1,20 +1,19 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+// import Vuex from 'vuex'
 // Table, TableColumn,
 // import { Button, Input, Pagination,Message, MessageBox } from 'element-ui';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VideoPlayer from 'vue-video-player'
-// require('vue-video-player/node_modules/video.js/dist/video-js.css')
-require('video.js/dist/video-js.css')
-require('vue-video-player/src/custom-theme.css')
-
 
 import App from './App'
 import router from './router'
 // import store from './store/index'
 import store from './store/store'
 import './styles/index.css'
+// require('vue-video-player/node_modules/video.js/dist/video-js.css')
+require('video.js/dist/video-js.css')
+require('vue-video-player/src/custom-theme.css')
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
@@ -35,18 +34,17 @@ Vue.use(VideoPlayer);
 // NProgress.configure({ easing: 'ease', speed: 800, showSpinner: false });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
-    if (localStorage.getItem("user_token")) {  // 通过localStorage获取当前的token是否存在
-      // NProgress.start();
+  if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
+    if (localStorage.getItem('user_token')) { // 通过localStorage获取当前的token是否存在
+      // NProgress.start()
       next();
-    }
-    else {
+    } else {
       next({
         path: '/login',
-        query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+        query: {redirect: to.fullPath} // 将跳转的路由path作为参数，登录成功后跳转到该路由
       })
     }
-  }else {
+  } else {
     // NProgress.start();
     next();
   }
@@ -77,4 +75,3 @@ new Vue({
 //   render: res.render,
 //   staticRenderFns: res.staticRenderFns
 // })
-

@@ -49,33 +49,40 @@
 
 <script>
 //  import {login as loginApi} from '../../api/api'
-import Store from "../../store/store";
-import eventBus from "../../common/eventBus";
+import Store from '../../store/store';
+import eventBus from '../../common/eventBus';
 
 export default {
   // name: 'login',
-  data() {
+  data () {
     return {
-      uuid: "",
-      imgSrc: "",
+      uuid: '',
+      imgSrc: '',
       logging: false,
-      card: "",
+      card: '',
+      msg: 'login',
       ruleForm: {
-        loginName: "",
-        password: "",
-        cardInput: ""
+        loginName: '',
+        password: '',
+        cardInput: ''
       },
       rules: {
-        loginName: [{ required: true, message: "请输入账号", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        loginName: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
         cardInput: [
-          { required: true, message: "请输入验证码", trigger: "blur" }
+          { required: true, message: '请输入验证码', trigger: 'blur' }
         ]
       },
       checked: false
     };
   },
-  created() {
+  beforeCreate () {
+    console.log(this)
+    console.log(this.msg);
+  },
+  created () {
+    console.log(this)
+    console.log(this.msg);
     // 页面创建完成时先清除token,因为axios会拦截所有的请求，不清空的话，就会在登录时加上一个token,会导致登录失败
     // if (localStorage.getItem("user_token")) {
     //   localStorage.removeItem("user_token");
@@ -83,36 +90,36 @@ export default {
     // this.getCookie();
     // this.getVerification();
 
-    //订阅者：订阅消息（事件）
-    eventBus.$on("toHome", this.toHome1);
-    eventBus.$on("toHome", this.toHome2);
+    // 订阅者：订阅消息（事件）
+    eventBus.$on('toHome', this.toHome1);
+    eventBus.$on('toHome', this.toHome2);
   },
   methods: {
-    toHome1(e) {
+    toHome1 (e) {
       console.log(e);
     },
-    toHome2(e) {
+    toHome2 (e) {
       console.log(e);
     },
-    onLogin() {
-      Store.set("user_token", "this iss token");
-      Store.set("ps", ["XTGL", "YHGL", "JSGL", "QT"]);
+    onLogin () {
+      Store.set('user_token', 'this iss token');
+      Store.set('ps', ['XTGL', 'YHGL', 'JSGL', 'QT']);
       // this.$message.success("登录成功！");
       this.$message({
         showClose: true,
-        message: "登录成功",
-        type: "success"
+        message: '登录成功',
+        type: 'success'
       });
-      this.$router.push({ path: "/home" });
+      this.$router.push({ path: '/home' });
     },
-    //用户登录
-    handleSubmit() {
+    // 用户登录
+    handleSubmit () {
       let name = this.ruleForm.loginName,
         pwd = this.ruleForm.password;
       this.logging = true;
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
-          //判断复选框是否被勾选 勾选则调用配置cookie方法
+          // 判断复选框是否被勾选 勾选则调用配置cookie方法
           if (this.checked === true) {
             this.setCookie(name, pwd, 7);
           } else {
@@ -134,9 +141,9 @@ export default {
                 password: pwd,
                 token: data.data.token
               };
-              //本地保存记住信息
-              Store.set("Identity", userInfo);
-              Store.set("user_token", data.data.token);
+              // 本地保存记住信息
+              Store.set('Identity', userInfo);
+              Store.set('user_token', data.data.token);
               this.getLoginInfo();
             })
             .catch(data => {
@@ -144,50 +151,50 @@ export default {
             });
         } else {
           this.logging = false;
-          this.$message.warning("请将表单完成再提交！");
+          this.$message.warning('请将表单完成再提交！');
         }
       });
     },
     // 获取登录用户信息
-    getLoginInfo() {
+    getLoginInfo () {
       loginApi.getLoginUserInfo().then(res => {
         if (res.status === 200) {
-          Store.set("ps", res.data.routerList);
-          Store.set("roleKey", res.data.superManager);
-          this.$message.success("登录成功！");
-          this.$router.push({ path: "/home" });
+          Store.set('ps', res.data.routerList);
+          Store.set('roleKey', res.data.superManager);
+          this.$message.success('登录成功！');
+          this.$router.push({ path: '/home' });
         }
       });
     },
     /**
      * author: Wonder
      * description: 设置cookie
-     * @param c_name   用户名
-     * @param c_pwd    密码
+     * @param cName   用户名
+     * @param cPwd    密码
      * @param exdays   存放天数
      */
-    setCookie(c_name, c_pwd, exdays) {
-      let exdate = new Date(); //获取时间
-      exdate.setTime(exdate.getTime() + 24 * 60 * 60 * 1000 * exdays); //保存的天数
-      //字符串拼接cookie
+    setCookie (cName, cPwd, exdays) {
+      let exdate = new Date(); // 获取时间
+      exdate.setTime(exdate.getTime() + 24 * 60 * 60 * 1000 * exdays); // 保存的天数
+      // 字符串拼接cookie
       window.document.cookie =
-        "userName" + "=" + c_name + ";path=/;expires=" + exdate.toUTCString();
+        'userName' + '=' + cName + ';path=/;expires=' + exdate.toUTCString();
       window.document.cookie =
-        "userPwd" + "=" + c_pwd + ";path=/;expires=" + exdate.toUTCString();
+        'userPwd' + '=' + cPwd + ';path=/;expires=' + exdate.toUTCString();
     },
     /**
      * author: Wonder
      * description: 读取cookie
      */
-    getCookie: function() {
+    getCookie: function () {
       if (document.cookie.length > 0) {
-        let arr = document.cookie.split("; "); //这里显示的格式需要切割一下自己可输出看下
+        let arr = document.cookie.split('; '); // 这里显示的格式需要切割一下自己可输出看下
         for (let i = 0; i < arr.length; i++) {
-          let arr2 = arr[i].split("="); //再次切割
-          //判断查找相对应的值
-          if (arr2[0] === "userName") {
-            this.ruleForm.loginName = arr2[1]; //保存到保存数据的地方
-          } else if (arr2[0] === "userPwd") {
+          let arr2 = arr[i].split('='); // 再次切割
+          // 判断查找相对应的值
+          if (arr2[0] === 'userName') {
+            this.ruleForm.loginName = arr2[1]; // 保存到保存数据的地方
+          } else if (arr2[0] === 'userPwd') {
             this.ruleForm.password = arr2[1];
           }
         }
@@ -197,11 +204,11 @@ export default {
      * author: Wonder
      * description: 清除cookie
      */
-    clearCookie: function() {
-      this.setCookie("", "", -1); //修改2值都为空，天数为负1天就好了
+    clearCookie: function () {
+      this.setCookie('', '', -1); // 修改2值都为空，天数为负1天就好了
     },
-    //获取验证码
-    getVerification() {
+    // 获取验证码
+    getVerification () {
       kaptchaApi
         .getKaptcha()
         .then(res => {
@@ -211,11 +218,11 @@ export default {
           }
         })
         .catch(err => {
-          this.$message.error("获取验证码失败，请稍后重试！");
+          this.$message.error('获取验证码失败，请稍后重试！');
         });
     },
-    //校验验证码
-    validKaptcha() {
+    // 校验验证码
+    validKaptcha () {
       let params = {
         code: this.ruleForm.cardInput,
         uuid: this.uuid

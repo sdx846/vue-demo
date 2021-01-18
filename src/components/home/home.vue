@@ -176,28 +176,28 @@
 // Vue.use(Submenu);
 // Vue.use(MenuItem);
 // Vue.use(MenuItemGroup);
-import Store from "../../store/store";
+// import Store from '../../store/store';
 import eventBus from '../../common/eventBus';
 
 export default {
   // name: 'home',
-  data() {
+  data () {
     return {
-      username: "admin",
-      msg: "this is home page",
-      active: sessionStorage.getItem("active") || "home",
-      ps: ["XTGL", "GL1", "GL2", "QT"], //登录后从后台获取的权限列表
+      username: 'admin',
+      msg: 'this is home page',
+      active: sessionStorage.getItem('active') || 'home',
+      ps: ['XTGL', 'GL1', 'GL2', 'QT'], // 登录后从后台获取的权限列表
       // roleKey: Store.get("roleKey"),
       breadList: []
     };
   },
-  created() {
+  created () {
     // if (Store.get("ps")) {
     //   this.ps = Store.get("ps");
     // }
-    if (!localStorage.getItem("user_token")) {
+    if (!localStorage.getItem('user_token')) {
       this.$router.replace({
-        path: "/login"
+        path: '/login'
       });
       return;
     }
@@ -211,31 +211,31 @@ export default {
     // console.log(this.$data);
     // console.log(this.$options);
 
-    //发布者：发布消息
-    eventBus.$emit('toHome','home加载成功');
+    // 发布者：发布消息
+    eventBus.$emit('toHome', 'home加载成功');
   },
   watch: {
-    $route() {
+    $route () {
       this.getBread();
     }
   },
   methods: {
-    newPage(path) {
+    newPage (path) {
       const { href } = this.$router.resolve({
         path: path
       });
-      window.open(href, "_blank");
+      window.open(href, '_blank');
     },
-    getBread() {
+    getBread () {
       this.breadList = this.$route.matched;
       for (let item of this.breadList) {
-        if (item.name === "首页") {
-          item.path = "/home";
+        if (item.name === '首页') {
+          item.path = '/home';
         }
       }
     },
-    activeChange(index) {
-      sessionStorage.setItem("active", index);
+    activeChange (index) {
+      sessionStorage.setItem('active', index);
     }
   }
 };
