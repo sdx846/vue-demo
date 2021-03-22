@@ -1,7 +1,12 @@
 <template>
   <div class="other">
     <h1>{{ msg }}</h1>
-    <el-button type="primary" icon="el-icon-plus" @click="onAdd">新增</el-button>
+    <div>
+      姓名：{{ obj.name }}；年龄：{{ obj.age }}；性别：{{ obj.gender }} {{ x }}
+    </div>
+    <el-button type="primary" icon="el-icon-plus" @click="onAdd"
+      >新增</el-button
+    >
 
     <!-- 弹框  :key="Math.random()"-->
     <create
@@ -22,27 +27,31 @@
 </template>
 
 <script>
-import Create from "./create";
+import Create from './create';
 export default {
   // name: 'other',
-  data() {
+  data () {
     return {
-      msg: "this is other page",
-      id: "", //详情页的id
-      modalTitle: "",
-      showModal: false
+      msg: 'this is other page',
+      id: '', // 详情页的id
+      modalTitle: '',
+      showModal: false,
+      obj: {
+        name: 'll',
+        age: 52
+      }
     };
   },
   components: {
     create: Create
   },
-  created() {
-    if (!localStorage.getItem("user_token")) {
+  created () {
+    if (!localStorage.getItem('user_token')) {
       this.$router.replace({
-        path: "/login"
+        path: '/login'
       });
-      return;
     }
+    this.x = 'xxx';
     // console.log(this.$store)
     // console.log(this.$parent);
     // console.log(this.$root);
@@ -53,13 +62,16 @@ export default {
     // console.log(this.$data);
     // console.log(this.$options);
   },
+  mounted () {
+    this.obj.gender = '男';
+  },
   methods: {
-    onAdd() {
-      this.modalTitle = "新增";
+    onAdd () {
+      this.modalTitle = '新增';
       this.showModal = true;
-      this.id = "";
+      this.id = '';
     },
-    updateList(opt) {},
+    updateList (opt) {}
     // onSum(){
     //   this.$store.dispatch('addFun');
     // },
@@ -70,5 +82,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
