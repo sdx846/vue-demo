@@ -17,7 +17,7 @@ NODE_ENV = 'easypark';
 
 // domain = 'http://' + window.location.host + '/';
 // domain='https://test.easy-parking.cn/';
-domain = 'http://127.0.0.1:8060';
+domain = 'http://127.0.0.1:8061/';
 
 baseURL = domain + NODE_ENV + '/';
 axios.defaults.baseURL = baseURL;
