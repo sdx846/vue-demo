@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import echarts from "echarts/lib/echarts";
-import world from "echarts/map/js/world";
-import "echarts-gl";
+import echarts from 'echarts/lib/echarts';
+import world from 'echarts/map/js/world';
+import 'echarts-gl';
 
 export default {
   // inject:['reload'],
@@ -54,22 +54,22 @@ export default {
       const myCharts = echarts.init(this.$refs.chart1);
       let option = {
         title: {
-          text: "销售渠道变化",
+          text: '销售渠道变化',
           textStyle: {
-            color: "#fff",
+            color: '#fff',
             fontSize: 14
           }
         },
         tooltip: {
-          trigger: "axis"
+          trigger: 'axis'
         },
         // legend: {
         //   data: ["邮件营销", "联盟广告", "视频广告", "直接访问", "搜索引擎"]
         // },
         grid: {
-          left: "3%",
-          right: "4%",
-          bottom: "3%",
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
           containLabel: true
         },
         // toolbox: {
@@ -79,9 +79,9 @@ export default {
         // },
         //x轴（含轴上标签，线，网格）
         xAxis: {
-          type: "category",
+          type: 'category',
           boundaryGap: false,
-          data: ["A1", "A2", "A3", "A4", "A5", "A6"],
+          data: ['A1', 'A2', 'A3', 'A4', 'A5', 'A6'],
           //x轴对应的网格
           splitLine: {
             show: false //去掉默认的网格线
@@ -95,8 +95,8 @@ export default {
             show: false,
             length: 10,
             lineStyle: {
-              color: "red",
-              type: "solid",
+              color: 'red',
+              type: 'solid',
               width: 2
             }
           },
@@ -108,14 +108,14 @@ export default {
           axisLine: {
             show: true,
             lineStyle: {
-              type: "solid",
-              color: "#fff",
+              type: 'solid',
+              color: '#fff',
               width: 0.5
             }
           }
         },
         yAxis: {
-          type: "value",
+          type: 'value',
           splitLine: {
             show: false //去掉默认的网格线
             // lineStyle: {
@@ -126,8 +126,8 @@ export default {
           axisLine: {
             show: true,
             lineStyle: {
-              type: "solid",
-              color: "#fff",
+              type: 'solid',
+              color: '#fff',
               width: 0.5
             }
           }
@@ -135,45 +135,45 @@ export default {
         //数据
         series: [
           {
-            name: "邮件营销",
-            type: "line",
+            name: '邮件营销',
+            type: 'line',
             smooth: true, //折点是圆弧状的
             // smoothMonotone: "y",
             // showSymbol: true,
-            symbol: "circle", //折点设定为实心点,非实心点中间是白色的
+            symbol: 'circle', //折点设定为实心点,非实心点中间是白色的
             symbolSize: 8, //设定实心点的大小
             lineStyle: {
-              color: "yellow",
+              color: 'yellow',
               width: 3
             },
             //折线下方区域
             areaStyle: {
-              color: "#ddd"
+              color: '#ddd'
             },
-            stack: "总量",
+            stack: '总量',
             data: [120, 132, 101, 134, 90, 230]
           },
           {
-            name: "联盟广告",
-            type: "line",
+            name: '联盟广告',
+            type: 'line',
             smooth: false,
-            smoothMonotone: "x",
-            stack: "总量",
+            smoothMonotone: 'x',
+            stack: '总量',
             data: [220, 280, 240, 234, 180, 60]
           },
           {
-            name: "视频广告",
-            type: "line",
+            name: '视频广告',
+            type: 'line',
             smooth: true,
-            smoothMonotone: "x",
-            stack: "总量",
+            smoothMonotone: 'x',
+            stack: '总量',
             data: [150, 232, 201, 154, 190, 330]
           }
         ]
       };
 
       myCharts.setOption(option);
-      window.addEventListener("resize", () => {
+      window.addEventListener('resize', () => {
         if (myCharts) {
           myCharts.resize();
         }
@@ -181,17 +181,17 @@ export default {
     },
     //地球 1
     f2() {
-      const canvas = document.createElement("canvas");
+      const canvas = document.createElement('canvas');
       const mapChart = echarts.init(canvas, null, {
         width: 4096,
         height: 2048
       });
       mapChart.setOption({
-        backgroundColor: "#120f42", // 地球上海洋区域颜色#031d42
+        backgroundColor: '#120f42', // 地球上海洋区域颜色#031d42
         series: [
           {
-            type: "map",
-            map: "world",
+            type: 'map',
+            map: 'world',
             top: 0,
             left: 0, // 绘制完整尺寸的 echarts 实例
             right: 0,
@@ -208,21 +208,21 @@ export default {
     f3() {
       const myCharts = echarts.init(this.$refs.chart2);
       const option = {
-        backgroundColor: "transparent", //"#031d42"
+        backgroundColor: 'transparent', //"#031d42"
         globe: {
           show: true,
           roam: false, // 是否允许鼠标滚动放大，缩小
           baseTexture: this.f2(),
-          shading: "lambert", // 地球中三维图形的着色效果,通过经典的 lambert 着色表现光照带来的明
+          shading: 'lambert', // 地球中三维图形的着色效果,通过经典的 lambert 着色表现光照带来的明
           light: {
             ambient: {
               // 环境光
-              color: "#fff", // 颜色
+              color: '#fff', // 颜色
               intensity: 0.5 // 光的强度
             },
             main: {
               // 太阳光
-              color: "#27ff00", // 颜色
+              color: '#27ff00', // 颜色
               intensity: 0.5, // 主光源的强度
               shadow: false
             }
@@ -236,15 +236,15 @@ export default {
         //绘制攻击性
         series: [
           {
-            type: "lines3D",
-            coordinateSystem: "globe",
-            blendMode: "lighter",
+            type: 'lines3D',
+            coordinateSystem: 'globe',
+            blendMode: 'lighter',
             effect: {
               show: true,
               trailWidth: 1.2,
               trailLength: 0.5,
               trailOpacity: 1,
-              trailColor: "#1ec5d6" //rgb(30,30,60)
+              trailColor: '#1ec5d6' //rgb(30,30,60)
             },
             lineStyle: {
               //   color: "#fff",
@@ -277,7 +277,7 @@ export default {
         ]
       };
       myCharts.setOption(option);
-      window.addEventListener("resize", () => {
+      window.addEventListener('resize', () => {
         if (myCharts) {
           myCharts.resize();
         }
@@ -285,18 +285,18 @@ export default {
     },
     //地球2
     f4() {
-      const canvas = document.createElement("canvas");
+      const canvas = document.createElement('canvas');
       const mapChart = echarts.init(canvas, null, {
         width: 4096,
         height: 2048
       });
       mapChart.setOption(
         {
-          backgroundColor: "#120f42", // 地球上海洋区域颜色#031d42
+          backgroundColor: '#120f42', // 地球上海洋区域颜色#031d42
           geo: {
             z: 1,
-            type: "map",
-            map: "world",
+            type: 'map',
+            map: 'world',
             top: 0,
             left: 0, // 绘制完整尺寸的 echarts 实例
             right: 0,
@@ -306,18 +306,18 @@ export default {
               [180, -90]
             ], // 设置为一张完整经纬度的世界地图
             nameMap: {
-              China: "中国" // 变成中文
+              China: '中国' // 变成中文
             },
             label: {
               show: false, // 是否显示文本
-              color: "red" // 文本颜色
+              color: 'red' // 文本颜色
             },
             itemStyle: {
               // 地图区域的多边形 图形样式。 默认样试。
               normal: {
                 //设置渐变颜色
                 color: {
-                  type: "linear",
+                  type: 'linear',
                   x: 100,
                   y: 12,
                   x2: 12,
@@ -325,19 +325,19 @@ export default {
                   colorStops: [
                     {
                       offset: 0,
-                      color: "#557dd8" // 地球上非海洋区域0% 处的颜色
+                      color: '#557dd8' // 地球上非海洋区域0% 处的颜色
                     },
                     {
                       offset: 1,
-                      color: "#3929c1" // 地球上非海洋区域100% 处的颜色
+                      color: '#3929c1' // 地球上非海洋区域100% 处的颜色
                     }
                   ],
                   global: true // 缺省为 false
                 },
-                borderColor: "#ddd", // 地球上各区域连接的边框线颜色
+                borderColor: '#ddd', // 地球上各区域连接的边框线颜色
                 borderWidth: 1, // 边框线线宽
-                borderType: "dashed", // 边框线支持 'solid', 'dashed', 'dotted'。
-                shadowColor: "#7277b5", // 边框线阴影颜色
+                borderType: 'dashed', // 边框线支持 'solid', 'dashed', 'dotted'。
+                shadowColor: '#7277b5', // 边框线阴影颜色
                 shadowBlur: 6, // 模糊大小
                 shadowOffsetX: 6, // 水平偏移
                 shadowOffsetY: 6 // 垂直偏移
@@ -348,20 +348,20 @@ export default {
               label: {
                 // 文本
                 show: true,
-                color: "red"
+                color: 'red'
               },
               itemStyle: {
                 // 区域
-                areaColor: "#451a6d" //鼠标移到地图区域时的区域颜色
+                areaColor: '#451a6d' //鼠标移到地图区域时的区域颜色
               }
             },
             //特别标出的地图区域
             regions: [
               {
-                name: "中国",
+                name: '中国',
                 itemStyle: {
                   normal: {
-                    areaColor: "#24cac2" //将地球上中国区域的颜色标记为#24cac2
+                    areaColor: '#24cac2' //将地球上中国区域的颜色标记为#24cac2
                   }
                 }
               }
@@ -378,21 +378,21 @@ export default {
       let mapChart = this.f4();
       // 地球
       const option = {
-        backgroundColor: "transparent",
+        backgroundColor: 'transparent',
         globe: {
           roam: false, // 是否允许鼠标滚动放大，缩小
           baseTexture: mapChart,
           //   environment: bgImg == "" ? "" : require(`../../../${bgImg}`),
-          shading: "lambert", // 地球中三维图形的着色效果,通过经典的 lambert 着色表现光照带来的明
+          shading: 'lambert', // 地球中三维图形的着色效果,通过经典的 lambert 着色表现光照带来的明
           light: {
             ambient: {
               // 环境光
-              color: "#fff", // 颜色
+              color: '#fff', // 颜色
               intensity: 0.5 // 光的强度
             },
             main: {
               // 太阳光
-              color: "#27ff00", // 颜色
+              color: '#27ff00', // 颜色
               intensity: 0.5, // 主光源的强度
               shadow: false
             }
@@ -418,18 +418,18 @@ export default {
         },
         series: [
           {
-            type: "lines3D",
-            coordinateSystem: "globe",
-            blendMode: "lighter",
+            type: 'lines3D',
+            coordinateSystem: 'globe',
+            blendMode: 'lighter',
             effect: {
               show: true,
               trailWidth: 1.2,
               trailLength: 0.5,
               trailOpacity: 1,
-              trailColor: "#1ec5d6" //rgb(30,30,60)
+              trailColor: '#1ec5d6' //rgb(30,30,60)
             },
             lineStyle: {
-              color: "#24cac2",
+              color: '#24cac2',
               width: 1,
               opacity: 1
             },
@@ -460,13 +460,13 @@ export default {
       };
       chart.setOption(option, true);
       // 点击事件
-      mapChart.on("click", params => {
-        console.log("1");
+      mapChart.on('click', params => {
+        console.log('1');
       });
-      chart.on("click", params => {
-        console.log("2");
+      chart.on('click', params => {
+        console.log('2');
       });
-      window.addEventListener("resize", () => {
+      window.addEventListener('resize', () => {
         if (chart) {
           chart.resize();
         }
@@ -477,13 +477,13 @@ export default {
       const myCharts = echarts.init(this.$refs.chart4);
       let option = {
         tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b}: {c} ({d}%)"
+          trigger: 'item',
+          formatter: '{a} <br/>{b}: {c} ({d}%)'
         },
         title: {
-          text: "目标达成率",
+          text: '目标达成率',
           textStyle: {
-            color: "#fff",
+            color: '#fff',
             fontSize: 14
           }
         },
@@ -494,10 +494,10 @@ export default {
         // },
         series: [
           {
-            name: "访问来源", //tooltip里显示的大标题
-            type: "pie",
+            name: '访问来源', //tooltip里显示的大标题
+            type: 'pie',
             center: [80, 90],
-            radius: ["50%", "70%"], //半径
+            radius: ['50%', '70%'], //半径
             avoidLabelOverlap: true, //是否启用防止标签重叠策略，默认开启。
             minAngle: 5,
             minShowLabelAngle: 90, //小于这个角度（0 ~ 360）的扇区，不显示标签（label 和 labelLine）。
@@ -506,11 +506,11 @@ export default {
             //饼图图形上的文本标签
             label: {
               show: true,
-              position: "center", //'inner' 同 'inside' ,'outside','center'
+              position: 'center', //'inner' 同 'inside' ,'outside','center'
               //   formatter: '{b}: {d}'
-              formatter: "{d}",
+              formatter: '{d}',
               //   rotate:true,//标签旋转
-              color: "#557dd8", //标签文字颜色
+              color: '#557dd8', //标签文字颜色
               //   backgroundColor: "#ddd", //文字块背景色。
               padding: 5
             },
@@ -551,21 +551,21 @@ export default {
               //饼图中间高亮显示时字体的样式
               label: {
                 show: true,
-                fontSize: "20",
-                fontWeight: "bold"
+                fontSize: '20',
+                fontWeight: 'bold'
               }
             },
             data: [
-              { value: 335, name: "直接访问" },
-              { value: 310, name: "邮件营销" },
-              { value: 1548, name: "搜索引擎", selected: true }
+              { value: 335, name: '直接访问' },
+              { value: 310, name: '邮件营销' },
+              { value: 1548, name: '搜索引擎', selected: true }
               //   { value: 1548, name: "搜索引擎"},
             ]
           }
         ]
       };
       myCharts.setOption(option);
-      window.addEventListener("resize", () => {
+      window.addEventListener('resize', () => {
         if (myCharts) {
           myCharts.resize();
         }
@@ -577,22 +577,22 @@ export default {
       let seriesLabel = {
         normal: {
           show: false,
-          textBorderColor: "#333",
+          textBorderColor: '#333',
           textBorderWidth: 2
         }
       };
       let option = {
         title: {
-          text: "热销产品排行",
+          text: '热销产品排行',
           textStyle: {
-            color: "#fff",
+            color: '#fff',
             fontSize: 14
           }
         },
         tooltip: {
-          trigger: "axis",
+          trigger: 'axis',
           axisPointer: {
-            type: "shadow"
+            type: 'shadow'
           }
         },
         grid: {
@@ -605,18 +605,18 @@ export default {
           }
         },
         xAxis: {
-          type: "value",
-          name: "Days",
+          type: 'value',
+          name: 'Days',
           axisLabel: {
-            formatter: "{value}",
-            color: "#fff"
+            formatter: '{value}',
+            color: '#fff'
           },
           //x轴线
           axisLine: {
             show: true,
             lineStyle: {
-              type: "solid",
-              color: "#423f3f",
+              type: 'solid',
+              color: '#423f3f',
               width: 0.5
             }
           },
@@ -624,82 +624,82 @@ export default {
           splitLine: {
             show: true, //是否显示网格线
             lineStyle: {
-              type: "dashed",
-              color: ["#423f3f", "#fff"]
+              type: 'dashed',
+              color: ['#423f3f', '#fff']
             }
           }
         },
         yAxis: {
-          type: "category",
+          type: 'category',
           inverse: true,
-          data: ["A", "B", "C", "D", "E"],
+          data: ['A', 'B', 'C', 'D', 'E'],
           axisLabel: {
             formatter: function(value) {
-              return "{" + value + "| }\n{value|" + value + "}";
+              return '{' + value + '| }\n{value|' + value + '}';
             },
-            color: "#fff",
+            color: '#fff',
             margin: 20,
             rich: {
               value: {
                 lineHeight: 30,
-                align: "center"
+                align: 'center'
               },
               Sunny: {
                 height: 40,
-                align: "center"
+                align: 'center'
               },
               Cloudy: {
                 height: 40,
-                align: "center"
+                align: 'center'
               },
               Showers: {
                 height: 40,
-                align: "center"
+                align: 'center'
               }
             }
           },
           axisLine: {
             show: true,
             lineStyle: {
-              type: "solid",
-              color: "#423f3f",
+              type: 'solid',
+              color: '#423f3f',
               width: 0.5
             }
           }
         },
         series: [
           {
-            name: "City Alpha",
-            type: "bar",
+            name: 'City Alpha',
+            type: 'bar',
             roundCap: true,
             data: [165, 170, 30, 50, 140],
             label: seriesLabel,
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: "#83bff6" },
-                { offset: 0.5, color: "#188df0" },
-                { offset: 1, color: "#188df0" }
+                { offset: 0, color: '#83bff6' },
+                { offset: 0.5, color: '#188df0' },
+                { offset: 1, color: '#188df0' }
               ])
             },
             emphasis: {
               itemStyle: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: "#2378f7" },
-                  { offset: 0.7, color: "#2378f7" },
-                  { offset: 1, color: "#83bff6" }
+                  { offset: 0, color: '#2378f7' },
+                  { offset: 0.7, color: '#2378f7' },
+                  { offset: 1, color: '#83bff6' }
                 ])
               }
             }
           },
           {
-            name: "City Beta",
-            type: "bar",
+            name: 'City Beta',
+            type: 'bar',
             roundCap: true,
             label: seriesLabel,
             data: [150, 105, 60, 66, 30],
             itemStyle: {
               color: {
-                type: "linear",
+                type: 'linear',
                 x: 100,
                 y: 12,
                 x2: 12,
@@ -707,11 +707,11 @@ export default {
                 colorStops: [
                   {
                     offset: 0,
-                    color: "#f17a34" // 地球上非海洋区域0% 处的颜色
+                    color: '#f17a34' // 地球上非海洋区域0% 处的颜色
                   },
                   {
                     offset: 1,
-                    color: "#e2c225" // 地球上非海洋区域100% 处的颜色
+                    color: '#e2c225' // 地球上非海洋区域100% 处的颜色
                   }
                 ],
                 global: true // 缺省为 false
@@ -721,7 +721,7 @@ export default {
         ]
       };
       myCharts.setOption(option);
-      window.addEventListener("resize", () => {
+      window.addEventListener('resize', () => {
         if (myCharts) {
           myCharts.resize();
         }
@@ -732,30 +732,30 @@ export default {
       const myCharts = echarts.init(this.$refs.chart5);
       let option = {
         tooltip: {
-          trigger: "axis",
+          trigger: 'axis',
           axisPointer: {
             // 坐标轴指示器，坐标轴触发有效
-            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           }
         },
         grid: {
-          left: "3%",
-          right: "4%",
-          bottom: "3%",
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
           containLabel: true
         },
         xAxis: [
           {
-            type: "category",
-            data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+            type: 'category',
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
             axisLabel: {
-              color: "#fff"
+              color: '#fff'
             },
             axisLine: {
               show: true,
               lineStyle: {
-                type: "solid",
-                color: "#423f3f",
+                type: 'solid',
+                color: '#423f3f',
                 width: 0.5
               }
             }
@@ -763,54 +763,54 @@ export default {
         ],
         yAxis: [
           {
-            type: "value",
+            type: 'value',
             // inverse: true
             axisLabel: {
-              color: "#fff"
+              color: '#fff'
             },
             axisLine: {
               show: true,
               lineStyle: {
-                type: "solid",
-                color: "#423f3f",
+                type: 'solid',
+                color: '#423f3f',
                 width: 0.5
               }
             },
             splitLine: {
               show: true, //是否显示网格线
               lineStyle: {
-                type: "solid",
-                color: "#423f3f"
+                type: 'solid',
+                color: '#423f3f'
               }
             }
           }
         ],
         series: [
           {
-            name: "百度",
-            type: "bar",
+            name: '百度',
+            type: 'bar',
             barWidth: 5,
-            stack: "搜索引擎",
+            stack: '搜索引擎',
             data: [620, 732, 701, 734, 1090, 1130, 1120],
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: "#83bff6" },
-                { offset: 0.5, color: "#188df0" },
-                { offset: 1, color: "#188df0" }
+                { offset: 0, color: '#83bff6' },
+                { offset: 0.5, color: '#188df0' },
+                { offset: 1, color: '#188df0' }
               ]),
               barBorderRadius: [24, 24, 0, 0]
             }
           },
           {
-            name: "谷歌",
-            type: "bar",
-            stack: "搜索引擎",
+            name: '谷歌',
+            type: 'bar',
+            stack: '搜索引擎',
             data: [-120, -132, -101, -134, -290, -230, -220],
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: "#f17a34" },
-                { offset: 0.5, color: "#e2c225" },
-                { offset: 1, color: "#e2c225" }
+                { offset: 0, color: '#f17a34' },
+                { offset: 0.5, color: '#e2c225' },
+                { offset: 1, color: '#e2c225' }
               ]),
               barBorderRadius: [0, 0, 24, 24]
             }
@@ -818,7 +818,7 @@ export default {
         ]
       };
       myCharts.setOption(option);
-      window.addEventListener("resize", () => {
+      window.addEventListener('resize', () => {
         if (myCharts) {
           myCharts.resize();
         }

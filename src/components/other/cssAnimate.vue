@@ -1,12 +1,23 @@
 <template>
   <div class="">
-    <el-button type="primary" icon="el-icon-plus" @click="$router.push({path:'/login'})">回到登录页</el-button>
+    <el-button
+      type="primary"
+      icon="el-icon-plus"
+      @click="$router.push({ path: '/login' })"
+    >
+      回到登录页
+    </el-button>
     <ul class="loading">
       <li v-for="v in 6" :key="v" :style="`--line-index: ${v}`"></li>
     </ul>
     <div class="heart-loading">
       <ul style="--line-count: 9">
-        <li v-for="v in 9" :key="v" :class="`line-${v}`" :style="`--line-index: ${v}`"></li>
+        <li
+          v-for="v in 9"
+          :key="v"
+          :class="`line-${v}`"
+          :style="`--line-index: ${v}`"
+        ></li>
       </ul>
     </div>
   </div>
@@ -16,22 +27,15 @@
 // import Store from "../../store/store";
 export default {
   data() {
-    return {
-     
-    };
+    return {};
   },
-  created() {
- 
-  },
-  watch: {
-  },
-  methods: {
-    
-  }
+  created() {},
+  watch: {},
+  methods: {}
 };
 </script>
 
-<style lang="scss"  scoped="" type="text/css">
+<style lang="scss" scoped>
 // 动画一
 .loading {
   width: 100px;

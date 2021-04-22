@@ -1,7 +1,11 @@
 <template>
   <div class>
     <div>HLS Live / 直播</div>
-    <video-player class="vjs-custom-skin" :options="playerOptions" @ready="playerReadied"></video-player>
+    <video-player
+      class="vjs-custom-skin"
+      :options="playerOptions"
+      @ready="playerReadied"
+    ></video-player>
   </div>
 </template>
 
@@ -10,11 +14,11 @@
 // import "../../common/custom-theme.css";
 
 // videojs
-import videojs from "video.js";
+import videojs from 'video.js';
 window.videojs = videojs;
 
 // hls plugin for videojs6
-require("videojs-contrib-hls/dist/videojs-contrib-hls.js");
+require('videojs-contrib-hls/dist/videojs-contrib-hls.js');
 
 // export
 export default {
@@ -22,13 +26,13 @@ export default {
     return {
       playerOptions: {
         // videojs and plugin options
-        height: "360",
+        height: '360',
         sources: [
           {
             withCredentials: false,
-            type: "application/x-mpegURL",
+            type: 'application/x-mpegURL',
             src:
-              "https://logos-channel.scaleengine.net/logos-channel/live/biblescreen-ad-free/playlist.m3u8"
+              'https://logos-channel.scaleengine.net/logos-channel/live/biblescreen-ad-free/playlist.m3u8'
           }
         ],
         controlBar: {
@@ -37,8 +41,7 @@ export default {
         },
         flash: { hls: { withCredentials: false } },
         html5: { hls: { withCredentials: false } },
-        poster:
-          "../../assets/logo.png"
+        poster: '../../assets/logo.png'
       }
     };
   },
@@ -54,5 +57,4 @@ export default {
 };
 </script>
 
-<style type="text/css">
-</style>
+<style type="text/css"></style>

@@ -6,10 +6,6 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script type="text/ecmascript-6"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

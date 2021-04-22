@@ -9,7 +9,13 @@
       width="70%"
     >
       <!-- 表单 -->
-      <el-form :model="form" ref="form" :rules="rules" label-width="100px" label-position="left">
+      <el-form
+        :model="form"
+        ref="form"
+        :rules="rules"
+        label-width="100px"
+        label-position="left"
+      >
         <h4 class="title">基本信息</h4>
         <div>
           <!-- 一行 -->
@@ -61,21 +67,29 @@
               :show-file-list="false"
             >
               <i
-                v-if="!form.pictureVOS || form.pictureVOS.length<3"
+                v-if="!form.pictureVOS || form.pictureVOS.length < 3"
                 class="el-icon-plus avatar-uploader-icon"
               ></i>
             </el-upload>
-            <span v-if="form.pictureVOS&&form.pictureVOS.length!==0" style="display:flex;">
+            <span
+              v-if="form.pictureVOS && form.pictureVOS.length !== 0"
+              style="display:flex;"
+            >
               <span
-                v-for="(item,index) in form.pictureVOS"
+                v-for="(item, index) in form.pictureVOS"
                 :key="item.url"
                 style="position:relative;margin-right: 8px;"
               >
                 <img :src="item.url" class="avatar" />
-                <i class="el-icon-circle-close close-icon" @click="onDelIcon(index)"></i>
+                <i
+                  class="el-icon-circle-close close-icon"
+                  @click="onDelIcon(index)"
+                ></i>
               </span>
             </span>
-            <span v-if="(!form.pictureVOS || form.pictureVOS.length===0)">--</span>
+            <span v-if="!form.pictureVOS || form.pictureVOS.length === 0">
+              --
+            </span>
           </el-form-item>
         </div>
       </el-form>
@@ -91,64 +105,64 @@ export default {
   data() {
     return {
       form: {
-        cmsAccount: "",
-        commercialName: "",
-        pictureVOS: [], //商户图片集合 ,
+        cmsAccount: '',
+        commercialName: '',
+        pictureVOS: [] //商户图片集合 ,
       },
       formCopy: {},
       rules: {
         cmsAccount: [
           {
             required: true,
-            message: "请选择",
-            trigger: "blur"
+            message: '请选择',
+            trigger: 'blur'
           }
         ],
         commercialName: [
           {
             required: true,
-            message: "请输入",
-            trigger: "blur"
+            message: '请输入',
+            trigger: 'blur'
           }
         ],
         phone: [
           {
             required: true,
             pattern: /^[1][3456789][0-9]{9}$/,
-            message: "请输入正确的电话号码",
-            trigger: "blur"
+            message: '请输入正确的电话号码',
+            trigger: 'blur'
           }
         ]
       },
       // hot:'this is  hot',
-      action: "", //图片上传路径
+      action: '', //图片上传路径
       myHeader: {
         // 上传图片加的头部信息
-        "api-version": "1.0",
-        Authorization: localStorage.getItem("user_token")
+        'api-version': '1.0',
+        Authorization: localStorage.getItem('user_token')
       },
       contentData: {
         // 上传图片的body体
-        fileType: "PICTURE",
-        serviceName: "ad-info-service"
+        fileType: 'PICTURE',
+        serviceName: 'ad-info-service'
       }
     };
   },
-  props: ["modalTitle", "showModal", "id"],
+  props: ['modalTitle', 'showModal', 'id'],
   computed: {
     show: {
       get() {
         return this.showModal;
       },
       set(val) {
-        this.$emit("update:showModal", val);
+        this.$emit('update:showModal', val);
       }
     }
   },
   created() {},
   watch: {
     showModal(newVal, oldVal) {
-      if (newVal && this.modalTitle === "详情") {
+      if (newVal && this.modalTitle === '详情') {
         //
       }
     }
@@ -175,33 +189,33 @@ export default {
     },
     //图片上传前的验证
     beforeAvatarUpload(file) {
-      const isJPEG = file.type === "image/jpeg";
-      const isJPG = file.type === "image/jpg";
-      const isPNG = file.type === "image/png";
-      const isBMP = file.type === "image/bmp";
-      const isGIF = file.type === "image/gif";
-      const isSVG = file.type === "image/svg+xml";
+      const isJPEG = file.type === 'image/jpeg';
+      const isJPG = file.type === 'image/jpg';
+      const isPNG = file.type === 'image/png';
+      const isBMP = file.type === 'image/bmp';
+      const isGIF = file.type === 'image/gif';
+      const isSVG = file.type === 'image/svg+xml';
       const isLt30M = file.size / 1024 / 1024 < 30;
 
       if (!isJPEG && !isJPG && !isPNG && !isBMP && !isGIF && !isSVG) {
-        this.$message.error("上传图片只能是jpeg/jpg/png/bmp/gif/svg格式!");
+        this.$message.error('上传图片只能是jpeg/jpg/png/bmp/gif/svg格式!');
       }
       if (!isLt30M) {
-        this.$message.error("上传图片总大小不能超过 30MB!");
+        this.$message.error('上传图片总大小不能超过 30MB!');
       }
       return (isJPEG || isJPG || isPNG || isBMP || isGIF || isSVG) && isLt30M;
     },
     //上传成功后的回调
     uploadSuccess(response, file, fileList) {
       if (response.status === 200) {
-        this.$message.success("图片上传成功");
+        this.$message.success('图片上传成功');
         this.form.logoUrl = response.data.url;
       }
     }
   }
 };
 </script>
-<style >
+<style>
 .modal-dialog .el-dialog__header {
   border: 1px solid #dcdfe6;
 }
@@ -236,8 +250,8 @@ export default {
   outline: none;
 }
 /* 搜索框 */
-.modal-dialog .el-input__inner{
- color:red;
+.modal-dialog .el-input__inner {
+  color: red;
 }
 /* 上传图片 */
 .modal-dialog .el-form-item__content {

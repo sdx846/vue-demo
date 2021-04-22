@@ -1,6 +1,9 @@
 <template>
   <div class>
-    <div>Custom event name & hotkeys plugin & flash plugin / Flash插件 & 自定义事件名称 & 热键插件</div>
+    <div>
+      Custom event name & hotkeys plugin & flash plugin / Flash插件 &
+      自定义事件名称 & 热键插件
+    </div>
     <video-player
       class="vjs-custom-skin"
       ref="videoPlayer"
@@ -13,13 +16,13 @@
 </template>
 
 <script>
-import "videojs-flash";
-import "videojs-hotkeys";
+import 'videojs-flash';
+import 'videojs-hotkeys';
 export default {
   data() {
     return {
       playerOptions: {
-        height: "360",
+        height: '360',
         autoplay: false,
         sources: [
           {
@@ -27,14 +30,13 @@ export default {
             // type: 'video/mp4',
             // src: 'http://vjs.zencdn.net/v/oceans.mp4',
             // flv
-            type: "video/x-flv",
-            src: "http://fms.cntv.lxdns.com/live/flv/channel96.flv"
+            type: 'video/x-flv',
+            src: 'http://fms.cntv.lxdns.com/live/flv/channel96.flv'
           }
         ],
-        language: "zh-CN",
-        techOrder: ["flash"],
-        poster:
-          "../../assets/logo.png"
+        language: 'zh-CN',
+        techOrder: ['flash'],
+        poster: '../../assets/logo.png'
       }
     };
   },
@@ -47,10 +49,10 @@ export default {
   watch: {},
   methods: {
     playerStateChanged(playerCurrentState) {
-      console.log("example 2: state changed", playerCurrentState);
+      console.log('example 2: state changed', playerCurrentState);
     },
     playerIsReady(player) {
-      console.log("example 2 ready!", player);
+      console.log('example 2 ready!', player);
       player.hotkeys({
         volumeStep: 0.1,
         seekStep: 5,
@@ -65,5 +67,4 @@ export default {
 };
 </script>
 
-<style type="text/css">
-</style>
+<style type="text/css"></style>

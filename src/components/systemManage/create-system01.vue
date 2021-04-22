@@ -8,11 +8,19 @@
       width="70%"
     >
       <!-- 表单 -->
-      <el-form :model="form" ref="form" :rules="rules" label-width="100px" label-position="left">
+      <el-form
+        :model="form"
+        ref="form"
+        :rules="rules"
+        label-width="100px"
+        label-position="left"
+      >
         <h4 class="title">systeom01信息</h4>
-        <div>{{modalTitle}}</div>
+        <div>{{ modalTitle }}</div>
         <div>------开始插槽----------</div>
-        <slot name="todo" :user="user" :test="test">默认{{ user.lastName }}</slot>
+        <slot name="todo" :user="user" :test="test">
+          默认{{ user.lastName }}
+        </slot>
         <div>------结束插槽----------</div>
       </el-form>
     </el-dialog>
@@ -26,15 +34,15 @@
 export default {
   data() {
     return {
-      msg:'msg1',
+      msg: 'msg1',
       user: {
-        lastName: "名",
-        firstName: "姓"
+        lastName: '名',
+        firstName: '姓'
       },
       test: [
-        { id: 1, name: "lili1" },
-        { id: 2, name: "lili2" },
-        { id: 3, name: "lili3" }
+        { id: 1, name: 'lili1' },
+        { id: 2, name: 'lili2' },
+        { id: 3, name: 'lili3' }
       ],
       form: {},
       formCopy: {},
@@ -43,14 +51,14 @@ export default {
           {
             required: true,
             pattern: /^[1][3456789][0-9]{9}$/,
-            message: "请输入正确的电话号码",
-            trigger: "blur"
+            message: '请输入正确的电话号码',
+            trigger: 'blur'
           }
         ]
       }
     };
   },
-  props: ["modalTitle", "show"],
+  props: ['modalTitle', 'show'],
   created() {
     //获取到父组件中属性和方法:
     // console.log(this.$parent.modalTitle);//结果是父组件初始化时的值
@@ -69,12 +77,12 @@ export default {
   methods: {
     //关闭弹框
     onCloseDialog() {
-      this.$emit("update:show", false);
+      this.$emit('update:show', false);
     }
   }
 };
 </script>
-<style >
+<style>
 .modal-dialog .el-dialog__header {
   border: 1px solid #dcdfe6;
 }

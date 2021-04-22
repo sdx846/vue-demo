@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import echarts from "echarts/lib/echarts";
-import "echarts/extension/bmap/bmap";
+import echarts from 'echarts/lib/echarts';
+import 'echarts/extension/bmap/bmap';
 // require("echarts/extension/bmap/bmap");
 // import "echarts-gl";
 
@@ -157,9 +157,9 @@ export default {
         // },
         series: [
           {
-            type: "scatter",
+            type: 'scatter',
             // 使用百度地图坐标系
-            coordinateSystem: "bmap",
+            coordinateSystem: 'bmap',
             // 数据格式跟在 geo 坐标系上一样，每一项都是 [经度，纬度，数值大小，其它维度...]
             data: [[120, 30, 1]]
           }
@@ -169,7 +169,7 @@ export default {
       // 获取百度地图实例，使用百度地图自带的控件
       let bmap = myCharts
         .getModel()
-        .getComponent("bmap")
+        .getComponent('bmap')
         .getBMap();
       bmap.addControl(new BMap.MapTypeControl());
     }
@@ -177,5 +177,4 @@ export default {
 };
 </script>
 
-<style type="text/css">
-</style>
+<style type="text/css"></style>

@@ -7,19 +7,23 @@
 
 const axios = require('../http');
 module.exports = {
-    name: "登录模块",
-    /**
-     * 登录
-    */
-    loginSys: (params) => {
-        return axios.post('cms-service/admin/adminUser/login', params).then(res => res.data);
-    },
-    /**
-    * @author: Dai
-    * @description: 获取登录用户信息
-    * @date: 2019/2/22 18:31
-    */
-    getLoginUserInfo(){
-        return axios.get('cms-service/admin/adminUser/getLoginInfo').then(res =>res.data);
-    }
+  name: '登录模块',
+  /**
+   * 登录
+   */
+  loginSys: params => {
+    return axios
+      .post('cms-service/admin/adminUser/login', params)
+      .then(res => res.data);
+  },
+  /**
+   * @author: Dai
+   * @description: 获取登录用户信息
+   * @date: 2019/2/22 18:31
+   */
+  getLoginUserInfo() {
+    return axios
+      .get('cms-service/admin/adminUser/getLoginInfo')
+      .then(res => res.data);
+  }
 };

@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import axios from "axios";
-import echarts from "echarts/lib/echarts";
-// import "echarts/lib/chart/map"; 
-import world from "echarts/map/js/world";
-import china from "echarts/map/js/china";
-import "echarts-gl";
+import axios from 'axios';
+import echarts from 'echarts/lib/echarts';
+// import "echarts/lib/chart/map";
+import world from 'echarts/map/js/world';
+import china from 'echarts/map/js/china';
+import 'echarts-gl';
 
 export default {
   data() {
@@ -23,20 +23,20 @@ export default {
     f1() {
       const myCharts = echarts.init(this.$refs.chart1);
       // 监听屏幕变化自动缩放图表
-      window.addEventListener("resize", function() {
+      window.addEventListener('resize', function() {
         chart.resize();
       });
       let option = {
         roam: true, //是否开启鼠标缩放和平移漫游。
-        backgroundColor: "#120f42", // 地球上海洋区域颜色#031d42
+        backgroundColor: '#120f42', // 地球上海洋区域颜色#031d42
         series: [
           //设置为一张完整经纬度的世界地图
           {
-            type: "map",
+            type: 'map',
             // center: [115.97, 29.71],//当前视角的中心点，用经纬度表示
             //  aspectScale:'0.75',//这个参数用于 scale 地图的长宽比。
             // zoom:1,//当前视角的缩放比例。
-            map: "world",//china world
+            map: 'world', //china world
             top: 0,
             left: 0, // 绘制完整尺寸的 echarts 实例
             right: 0,
@@ -49,7 +49,7 @@ export default {
               // show:true,
             },
             itemStyle: {
-              areaColor: "#557dd8"
+              areaColor: '#557dd8'
             },
             tooltip: {
               position: [10, 10]
@@ -57,41 +57,41 @@ export default {
             //高亮状态下
             emphasis: {
               label: {
-                color: "#fff",
+                color: '#fff',
                 fontSize: 12
               },
               itemStyle: {
-                areaColor: "#24cac2"
+                areaColor: '#24cac2'
               }
             },
             //标记
             markPoint: {
               symbol:
-                "image://http://debug.easy-parking.cn/h5/parkPay/img/car-away.png", //circle,pin
+                'image://http://debug.easy-parking.cn/h5/parkPay/img/car-away.png', //circle,pin
               symbolSize: [30, 30],
               //设置label无效
               label: {
                 show: true,
-                color: "#fff",
+                color: '#fff',
                 fontSize: 14
               },
               itemStyle: {
-                color: "yellow"
+                color: 'yellow'
               },
               emphasis: {
                 label: {
-                  color: "#fff",
+                  color: '#fff',
                   fontSize: 12
                 },
                 itemStyle: {
-                  color: "green"
+                  color: 'green'
                 }
               },
               //设置label无效，标签文字无法显示
               data: [
                 //标记在地图真实的坐标上
                 {
-                  name: "标记1",
+                  name: '标记1',
                   coord: [10, 20]
                   //   label: {
                   //     show: true,
@@ -99,17 +99,17 @@ export default {
                   //   }
                 },
                 {
-                  name: "标记2",
+                  name: '标记2',
                   coord: [25, 60]
                 },
                 //是屏幕中的固定位置，如果移动地图，标记位置不会跟着地图变化
                 {
-                  name: "某个屏幕坐标",
+                  name: '某个屏幕坐标',
                   x: 100,
                   y: 100
                 }
               ]
-            },
+            }
             // data:china,
           }
         ]
@@ -121,5 +121,4 @@ export default {
 };
 </script>
 
-<style type="text/css">
-</style>
+<style type="text/css"></style>

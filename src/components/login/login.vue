@@ -13,10 +13,20 @@
     >
       <h3 class="title">后台管理系统</h3>
       <el-form-item prop="loginName">
-        <el-input type="text" v-model="ruleForm.loginName" auto-complete="off" placeholder="账号"></el-input>
+        <el-input
+          type="text"
+          v-model="ruleForm.loginName"
+          auto-complete="off"
+          placeholder="账号"
+        ></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input type="password" v-model="ruleForm.password" auto-complete="off" placeholder="密码"></el-input>
+        <el-input
+          type="password"
+          v-model="ruleForm.password"
+          auto-complete="off"
+          placeholder="密码"
+        ></el-input>
       </el-form-item>
       <el-form-item prop="cardInput">
         <el-col :span="12">
@@ -32,7 +42,9 @@
           </div>
         </el-col>
       </el-form-item>
-      <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+      <el-checkbox v-model="checked" checked class="remember">
+        记住密码
+      </el-checkbox>
       <el-form-item style="width:100%;">
         <!-- <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit" :loading="logging">登录
         </el-button>-->
@@ -41,7 +53,9 @@
           style="width:100%;"
           @click.native.prevent="onLogin"
           :loading="logging"
-        >登录</el-button>
+        >
+          登录
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -54,7 +68,7 @@ import eventBus from '../../common/eventBus';
 
 export default {
   // name: 'login',
-  data () {
+  data() {
     return {
       uuid: '',
       imgSrc: '',
@@ -76,12 +90,12 @@ export default {
       checked: false
     };
   },
-  beforeCreate () {
-    console.log(this)
+  beforeCreate() {
+    console.log(this);
     console.log(this.msg);
   },
-  created () {
-    console.log(this)
+  created() {
+    console.log(this);
     console.log(this.msg);
     // 页面创建完成时先清除token,因为axios会拦截所有的请求，不清空的话，就会在登录时加上一个token,会导致登录失败
     // if (localStorage.getItem("user_token")) {
@@ -95,13 +109,13 @@ export default {
     eventBus.$on('toHome', this.toHome2);
   },
   methods: {
-    toHome1 (e) {
+    toHome1(e) {
       console.log(e);
     },
-    toHome2 (e) {
+    toHome2(e) {
       console.log(e);
     },
-    onLogin () {
+    onLogin() {
       Store.set('user_token', 'this iss token');
       Store.set('ps', ['XTGL', 'YHGL', 'JSGL', 'QT']);
       // this.$message.success("登录成功！");
@@ -113,7 +127,7 @@ export default {
       this.$router.push({ path: '/home' });
     },
     // 用户登录
-    handleSubmit () {
+    handleSubmit() {
       let name = this.ruleForm.loginName,
         pwd = this.ruleForm.password;
       this.logging = true;
@@ -156,7 +170,7 @@ export default {
       });
     },
     // 获取登录用户信息
-    getLoginInfo () {
+    getLoginInfo() {
       loginApi.getLoginUserInfo().then(res => {
         if (res.status === 200) {
           Store.set('ps', res.data.routerList);
@@ -173,7 +187,7 @@ export default {
      * @param cPwd    密码
      * @param exdays   存放天数
      */
-    setCookie (cName, cPwd, exdays) {
+    setCookie(cName, cPwd, exdays) {
       let exdate = new Date(); // 获取时间
       exdate.setTime(exdate.getTime() + 24 * 60 * 60 * 1000 * exdays); // 保存的天数
       // 字符串拼接cookie
@@ -186,7 +200,7 @@ export default {
      * author: Wonder
      * description: 读取cookie
      */
-    getCookie: function () {
+    getCookie: function() {
       if (document.cookie.length > 0) {
         let arr = document.cookie.split('; '); // 这里显示的格式需要切割一下自己可输出看下
         for (let i = 0; i < arr.length; i++) {
@@ -204,11 +218,11 @@ export default {
      * author: Wonder
      * description: 清除cookie
      */
-    clearCookie: function () {
+    clearCookie: function() {
       this.setCookie('', '', -1); // 修改2值都为空，天数为负1天就好了
     },
     // 获取验证码
-    getVerification () {
+    getVerification() {
       kaptchaApi
         .getKaptcha()
         .then(res => {
@@ -222,7 +236,7 @@ export default {
         });
     },
     // 校验验证码
-    validKaptcha () {
+    validKaptcha() {
       let params = {
         code: this.ruleForm.cardInput,
         uuid: this.uuid
