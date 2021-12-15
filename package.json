@@ -71,7 +71,7 @@
     "videojs-flash": "^2.1.0",
     "videojs-hotkeys": "^0.2.20",
     "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },
