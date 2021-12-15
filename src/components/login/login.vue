@@ -64,7 +64,7 @@
 <script>
 //  import {login as loginApi} from '../../api/api'
 import Store from '../../store/store';
-import eventBus from '../../common/eventBus';
+import eventBus from '../../utils/eventBus';
 
 export default {
   // name: 'login',

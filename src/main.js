@@ -10,7 +10,7 @@ import App from './App'
 import router from './router'
 // import store from './store/index'
 import store from './store/store'
-import './styles/index.css'
+import './cComponent'
 // require('vue-video-player/node_modules/video.js/dist/video-js.css')
 require('video.js/dist/video-js.css')
 require('vue-video-player/src/custom-theme.css')

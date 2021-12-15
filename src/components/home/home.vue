@@ -29,10 +29,7 @@
               @select="activeChange"
               class="el-menu-vertical-demo"
             >
-              <el-menu-item
-                index="home"
-                @click="$router.push({ path: '/home/other' })"
-              >
+              <el-menu-item index="home" @click="$router.push({ path: '/home/other' })">
                 <i class="el-icon-location"></i>
                 <span slot="title">首页</span>
               </el-menu-item>
@@ -48,18 +45,51 @@
                     index="home/systemManage/users"
                     @click.ctrl.native="newPage('users')"
                     @click="$router.push({ path: '/home/systemManage/users' })"
-                  >
-                    管理1
-                  </el-menu-item>
+                  >管理1</el-menu-item>
                   <el-menu-item
                     v-if="ps.includes('GL2')"
                     index="home/systemManage/role"
                     @click.ctrl.native="newPage('role')"
                     @click="$router.push({ path: '/home/systemManage/role' })"
-                  >
-                    管理2
-                  </el-menu-item>
+                  >管理2</el-menu-item>
+                  <el-menu-item
+                    v-if="ps.includes('table')"
+                    index="home/systemManage/table1"
+                    @click.ctrl.native="newPage('table1')"
+                    @click="$router.push({ path: '/home/systemManage/table1' })"
+                  >手写表格1</el-menu-item>
+                  <el-menu-item
+                    v-if="ps.includes('table')"
+                    index="home/systemManage/table2"
+                    @click.ctrl.native="newPage('table2')"
+                    @click="$router.push({ path: '/home/systemManage/table2' })"
+                  >手写表格2</el-menu-item>
+                  <el-menu-item
+                    v-if="ps.includes('editTable')"
+                    index="home/systemManage/editTable"
+                    @click.ctrl.native="newPage('editTable')"
+                    @click="$router.push({ path: '/home/systemManage/editTable' })"
+                  >可编辑表格</el-menu-item>
+                  <!-- <el-menu-item
+                    v-if="ps.includes('form')"
+                    index="home/systemManage/form"
+                    @click.ctrl.native="newPage('form')"
+                    @click="$router.push({ path: '/home/systemManage/form' })"
+                  >表单</el-menu-item>-->
                 </el-menu-item-group>
+                <el-submenu index="home/systemManage/form">
+                  <template slot="title">表单</template>
+                  <el-menu-item
+                    index="home/systemManage/form/cusSelect"
+                    @click.ctrl.native="newPage('cusSelect')"
+                    @click="$router.push({ path: '/home/systemManage/form/cusSelect' })"
+                  >手写select</el-menu-item>
+                  <el-menu-item
+                    index="home/systemManage/form/elForm"
+                    @click.ctrl.native="newPage('elForm')"
+                    @click="$router.push({ path: '/home/systemManage/form/elForm' })"
+                  >el-form</el-menu-item>
+                </el-submenu>
               </el-submenu>
               <!-- <el-menu-item index="home/other" v-if="ps.includes('QT')">
                 <template slot="title">
@@ -79,44 +109,37 @@
                     index="home/other/cssAnimate"
                     @click.ctrl.native="newPage('cssAnimate')"
                     @click="$router.push({ path: '/home/other/cssAnimate' })"
-                  >
-                    cssAnimate
-                  </el-menu-item>
+                  >cssAnimate</el-menu-item>
+                  <el-menu-item
+                    index="home/other/video0"
+                    @click.ctrl.native="newPage('video0')"
+                    @click="$router.push({ path: '/home/other/video0' })"
+                  >vue-video-player00</el-menu-item>
                   <el-menu-item
                     index="home/other/video1"
                     @click.ctrl.native="newPage('video1')"
                     @click="$router.push({ path: '/home/other/video1' })"
-                  >
-                    vue-video-player01
-                  </el-menu-item>
+                  >vue-video-player01</el-menu-item>
                   <el-menu-item
                     index="home/other/video2"
                     @click.ctrl.native="newPage('video2')"
                     @click="$router.push({ path: '/home/other/video2' })"
-                  >
-                    vue-video-player02
-                  </el-menu-item>
+                  >vue-video-player02</el-menu-item>
                   <el-menu-item
                     index="home/other/video3"
                     @click.ctrl.native="newPage('video3')"
                     @click="$router.push({ path: '/home/other/video3' })"
-                  >
-                    vue-video-player03
-                  </el-menu-item>
+                  >vue-video-player03</el-menu-item>
                   <el-menu-item
                     index="home/other/video4"
                     @click.ctrl.native="newPage('video4')"
                     @click="$router.push({ path: '/home/other/video4' })"
-                  >
-                    vue-video-player04
-                  </el-menu-item>
+                  >vue-video-player04</el-menu-item>
                   <el-menu-item
                     index="home/other/video5"
                     @click.ctrl.native="newPage('video5')"
                     @click="$router.push({ path: '/home/other/video5' })"
-                  >
-                    vue-video-player05
-                  </el-menu-item>
+                  >vue-video-player05</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
 
@@ -127,40 +150,35 @@
                 </template>
                 <el-menu-item-group>
                   <el-menu-item
+                    index="home/production/echart0"
+                    @click.ctrl.native="newPage('echart0')"
+                    @click="$router.push({ path: '/home/production/echart0' })"
+                  >echart00</el-menu-item>
+                  <el-menu-item
                     index="home/production/echart1"
                     @click.ctrl.native="newPage('echart1')"
                     @click="$router.push({ path: '/home/production/echart1' })"
-                  >
-                    echart01
-                  </el-menu-item>
+                  >echart01</el-menu-item>
                   <el-menu-item
                     index="home/production/echart2"
                     @click.ctrl.native="newPage('echart2')"
                     @click="$router.push({ path: '/home/production/echart2' })"
-                  >
-                    echart02-地图
-                  </el-menu-item>
+                  >echart02-地图</el-menu-item>
                   <el-menu-item
                     index="home/production/echart3"
                     @click.ctrl.native="newPage('echart3')"
                     @click="$router.push({ path: '/home/production/echart3' })"
-                  >
-                    echart03-地图
-                  </el-menu-item>
+                  >echart03-地图</el-menu-item>
                   <el-menu-item
                     index="home/production/echart4"
                     @click.ctrl.native="newPage('echart4')"
                     @click="$router.push({ path: '/home/production/echart4' })"
-                  >
-                    echart04-百度地图
-                  </el-menu-item>
+                  >echart04-百度地图</el-menu-item>
                   <el-menu-item
                     index="home/production/echart5"
                     @click.ctrl.native="newPage('echart5')"
                     @click="$router.push({ path: '/home/production/echart5' })"
-                  >
-                    echart05-百度地图2
-                  </el-menu-item>
+                  >echart05-百度地图2</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
             </el-menu>
@@ -172,19 +190,14 @@
             <div class="grid-content bg-purple-light">
               <!--内容头部面包屑-->
               <el-col :span="24" class="breadcrumb-container">
-                <el-breadcrumb
-                  separator-class="el-icon-arrow-right"
-                  class="breadcrumb-box"
-                >
+                <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb-box">
                   <div class="breadcrumb-item">
                     <el-breadcrumb-item
                       separator="/"
                       v-for="(item, index) in breadList"
                       :key="index"
                       :to="{ path: item.path === '/home' ? item.path : '' }"
-                    >
-                      {{ item.name }}
-                    </el-breadcrumb-item>
+                    >{{ item.name }}</el-breadcrumb-item>
                   </div>
                 </el-breadcrumb>
               </el-col>
@@ -211,7 +224,7 @@
 // Vue.use(MenuItem);
 // Vue.use(MenuItemGroup);
 // import Store from '../../store/store';
-import eventBus from '../../common/eventBus';
+import eventBus from '../../utils/eventBus';
 
 export default {
   // name: 'home',
@@ -220,7 +233,7 @@ export default {
       username: 'admin',
       msg: 'this is home page',
       active: sessionStorage.getItem('active') || 'home',
-      ps: ['XTGL', 'GL1', 'GL2', 'QT'], // 登录后从后台获取的权限列表
+      ps: ['XTGL', 'GL1', 'GL2', 'form', 'table', 'editTable', 'QT'], // 登录后从后台获取的权限列表
       // roleKey: Store.get("roleKey"),
       breadList: []
     };

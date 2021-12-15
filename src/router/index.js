@@ -49,6 +49,38 @@ export default new Router({
               path: 'role',
               name: '管理2',
               component: () => import('@/components/systemManage/system02.vue')
+            },
+            {
+              path: 'table1',
+              name: '手写表格1',
+              component: () => import('@/components/systemManage/tableNoPage.vue')
+            },
+            {
+              path: 'table2',
+              name: '手写表格2',
+              component: () => import('@/components/systemManage/tablePage.vue')
+            },
+            {
+              path: 'editTable',
+              name: '可编辑表格',
+              component: () => import('@/components/systemManage/editTable.vue')
+            },
+            {
+              path: 'form',
+              name: '表单',
+              component: () => import('@/components/systemManage/form'),
+              children: [
+                {
+                  path: 'cusSelect',
+                  name: '手写select',
+                  component: () => import('@/components/systemManage/form/cusSelect.vue')
+                },
+                {
+                  path: 'elForm',
+                  name: 'el-form',
+                  component: () => import('@/components/systemManage/form/elForm.vue')
+                },
+              ]
             }
           ]
         },
@@ -64,6 +96,11 @@ export default new Router({
               path: 'cssAnimate',
               name: 'css动画',
               component: () => import('@/components/other/cssAnimate')
+            },
+            {
+              path: 'video0',
+              name: 'vue-video-player00',
+              component: () => import('@/components/other/vue-video0')
             },
             {
               path: 'video1',
@@ -100,6 +137,11 @@ export default new Router({
           },
           component: () => import('@/components/production'),
           children: [
+            {
+              path: 'echart0',
+              name: 'echart00',
+              component: () => import('@/components/production/echart00.vue')
+            },
             {
               path: 'echart1',
               name: 'echart01',

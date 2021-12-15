@@ -1,0 +1,15 @@
+@import './fontSize.scss';
+%flex-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+%flex-x-b {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+%flex-y-c {
+  display: flex;
+  align-items: center;
+}

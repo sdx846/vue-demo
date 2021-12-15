@@ -25,5 +25,10 @@ module.exports = {
     return axios
       .get('cms-service/admin/adminUser/getLoginInfo')
       .then(res => res.data);
+  },
+  getVideoPay() {
+    return axios
+      .get('cms-service/admin/adminUser/getLoginInfo')
+      .then(res => res.data);
   }
 };
