@@ -17,7 +17,7 @@
     "echarts": "^4.8.0",
     "echarts-gl": "^1.1.1",
     "element-ui": "^2.13.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.3.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
